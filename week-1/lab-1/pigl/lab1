@@ -1,0 +1,43 @@
+
+;Unspecified return value
+
+1 ]=> (load "./pigl.scm")
+;Loading "./pigl.scm"... done
+;Value: vowel?
+
+1 ]=> (pigl 'scheme)
+;Value: emeschay
+
+1 ]=> (pigl 'another)
+;Value: anotheray
+
+1 ]=> (pigl 'boy)
+;Value: oybay
+
+1 ]=> (trace pigl)
+;Unspecified return value
+
+1 ]=> (pigl 'scheme)
+[Entering #[compound-procedure 1 pigl]
+    Args: scheme]
+[Entering #[compound-procedure 1 pigl]
+    Args: chemes]
+[Entering #[compound-procedure 1 pigl]
+    Args: hemesc]
+[Entering #[compound-procedure 1 pigl]
+    Args: emesch]
+[emeschay
+      <== #[compound-procedure 1 pigl]
+    Args: emesch]
+[emeschay
+      <== #[compound-procedure 1 pigl]
+    Args: hemesc]
+[emeschay
+      <== #[compound-procedure 1 pigl]
+    Args: chemes]
+[emeschay
+      <== #[compound-procedure 1 pigl]
+    Args: scheme]
+;Value: emeschay
+
+1 ]=> (transcript-off)
