@@ -6,8 +6,8 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 ### Week 1
 __Topic: Functional programming__
-- [ ] Reading (Section 1.1)
-- [ ] Homework
+- [x] Reading (Section 1.1)
+- [x] Homework
 - [ ] Labs
 - [ ] Watch
     - [ ] [Lecture 01: functional programming 1](https://archive.org/details/ucberkeley_webcast_l28HAzKy0N8)
