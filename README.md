@@ -8,10 +8,10 @@ This repository documents my progress in completing the CS 61A Programming cours
 __Topic: Functional programming__
 - [x] Reading (Section 1.1)
 - [x] Homework
-- [ ] Labs
-- [ ] Watch
-    - [ ] [Lecture 01: functional programming 1](https://archive.org/details/ucberkeley_webcast_l28HAzKy0N8)
-    - [ ] [Lecture 02: functional programming 2](https://archive.org/details/ucberkeley_webcast_TTK2lZoWbPQ)
+- [x] Labs
+- [x] Watch
+    - [x] [Lecture 01: functional programming 1](https://archive.org/details/ucberkeley_webcast_l28HAzKy0N8)
+    - [x] [Lecture 02: functional programming 2](https://archive.org/details/ucberkeley_webcast_TTK2lZoWbPQ)
 
 ### Week 2
 __Topic: Higher-order procedures__

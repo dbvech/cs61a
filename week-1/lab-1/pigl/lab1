@@ -1,0 +1,46 @@
+
+;Unspecified return value
+
+1 ]=> 
+;Loading "pigl.scm"... done
+;Value: vowel?
+
+1 ]=> 
+;Value: emeschay
+
+1 ]=> 
+;Value: airplaneay
+
+1 ]=> 
+;Value: oysbay
+
+1 ]=> 
+;Value: ongstray
+
+1 ]=> 
+;Unspecified return value
+
+1 ]=> 
+[Entering #[compound-procedure 1 pigl]
+    Args: scheme]
+[Entering #[compound-procedure 1 pigl]
+    Args: chemes]
+[Entering #[compound-procedure 1 pigl]
+    Args: hemesc]
+[Entering #[compound-procedure 1 pigl]
+    Args: emesch]
+[emeschay
+      <== #[compound-procedure 1 pigl]
+    Args: emesch]
+[emeschay
+      <== #[compound-procedure 1 pigl]
+    Args: hemesc]
+[emeschay
+      <== #[compound-procedure 1 pigl]
+    Args: chemes]
+[emeschay
+      <== #[compound-procedure 1 pigl]
+    Args: scheme]
+;Value: emeschay
+
+1 ]=> 

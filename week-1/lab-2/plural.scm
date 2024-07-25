@@ -1,0 +1,10 @@
+(define (plural wd)
+  (cond ((and (equal? (last wd) 'y)
+              (not (equal? (last (butlast wd)) 'o)))
+         (word (bl wd) 'ies))
+    ((member? (last wd) '(s ss)) (word wd 'es))
+    (else (word wd 's))))
+
+(plural 'cat)
+(plural 'boy)
+(plural 'bonus)
