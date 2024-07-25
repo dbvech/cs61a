@@ -15,9 +15,9 @@ __Topic: Functional programming__
 
 ### Week 2
 __Topic: Higher-order procedures__
-- [ ] Reading (Section 1.3)
+- [x] Reading (Section 1.3)
 - [ ] Homework
-- [ ] Labs
+- [x] Labs
 - [ ] Watch
     - [ ] [Lecture 03: higher-order procedures 1](https://archive.org/details/ucberkeley_webcast_ogIGxEzvnSE)
     - [ ] [Lecture 04: higher-order procedures 2](https://archive.org/details/ucberkeley_webcast_ZvH3wF2qg7Q)
