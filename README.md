@@ -5,61 +5,88 @@ This repository documents my progress in completing the CS 61A Programming cours
 ## Progress
 
 ### Week 1
-__Topic: Functional programming__
+
+**Topic: Functional programming**
+
 - [x] Reading (Section 1.1)
 - [x] Homework
 - [x] Labs
 - [x] Watch
-    - [x] [Lecture 01: functional programming 1](https://archive.org/details/ucberkeley_webcast_l28HAzKy0N8)
-    - [x] [Lecture 02: functional programming 2](https://archive.org/details/ucberkeley_webcast_TTK2lZoWbPQ)
+  - [x] [Lecture 01: functional programming 1](https://archive.org/details/ucberkeley_webcast_l28HAzKy0N8)
+  - [x] [Lecture 02: functional programming 2](https://archive.org/details/ucberkeley_webcast_TTK2lZoWbPQ)
 
 ### Week 2
-__Topic: Higher-order procedures__
+
+**Topic: Higher-order procedures**
+
 - [x] Reading (Section 1.3)
 - [x] Homework
 - [x] Labs
-- [ ] Watch
-    - [ ] [Lecture 03: higher-order procedures 1](https://archive.org/details/ucberkeley_webcast_ogIGxEzvnSE)
-    - [ ] [Lecture 04: higher-order procedures 2](https://archive.org/details/ucberkeley_webcast_ZvH3wF2qg7Q)
+- [x] Watch
+  - [x] [Lecture 03: higher-order procedures 1](https://archive.org/details/ucberkeley_webcast_ogIGxEzvnSE)
+  - [x] [Lecture 04: higher-order procedures 2](https://archive.org/details/ucberkeley_webcast_ZvH3wF2qg7Q)
 
 ### Week 3
-__Topic: Recursion and iteration__
+
+**Topic: Recursion and iteration**
+
+- [x] Reading (Section 1.2 through 1.2.4)
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 05: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_dC4YGxzoAXk)
+  - [ ] [Lecture 06: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_qxDGE1-S_LE)
+  - [ ] [Lecture 07: orders of growth](https://archive.org/details/ucberkeley_webcast_32L5j10rrK0)
+  - [ ] [Lecture 08: recursion and iteration](https://archive.org/details/ucberkeley_webcast_0G3tNuBBO5I)
 
 ### Week 4
-__Topic: Data abstraction__
+
+**Topic: Data abstraction**
 
 ### Week 5
-__Topic: Hierarchical data__
+
+**Topic: Hierarchical data**
 
 ### Week 6
-__Topic: Generic Operators__
+
+**Topic: Generic Operators**
 
 ### Week 7
-__Topic: Object-oriented programming__
+
+**Topic: Object-oriented programming**
 
 ### Week 8
-__Topic: Assignment, state, environments__
+
+**Topic: Assignment, state, environments**
 
 ### Week 9
-__Topic: Mutable data, vectors__
+
+**Topic: Mutable data, vectors**
 
 ### Week 10
-__Topic: client/server, concurrency__
+
+**Topic: client/server, concurrency**
 
 ### Week 11
-__Topic: Streams__
+
+**Topic: Streams**
 
 ### Week 12
-__Topic: Metacircular evaluator__
+
+**Topic: Metacircular evaluator**
 
 ### Week 13
-__Topic: Analyzing evaluator, MapReduce__
+
+**Topic: Analyzing evaluator, MapReduce**
 
 ### Week 14
-__Topic: lazy evaluator, nondeterministic evaluator__
+
+**Topic: lazy evaluator, nondeterministic evaluator**
 
 ### Week 15
-__Topic: Logic programming__
+
+**Topic: Logic programming**
 
 ### Week 16
-__Topic: Review__
+
+**Topic: Review**
