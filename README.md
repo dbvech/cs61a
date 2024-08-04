@@ -31,11 +31,11 @@ This repository documents my progress in completing the CS 61A Programming cours
 **Topic: Recursion and iteration**
 
 - [x] Reading (Section 1.2 through 1.2.4)
-- [ ] Homework
+- [x] Homework
 - [ ] Labs
 - [ ] Watch
-  - [ ] [Lecture 05: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_dC4YGxzoAXk)
-  - [ ] [Lecture 06: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_qxDGE1-S_LE)
+  - [x] [Lecture 05: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_dC4YGxzoAXk)
+  - [x] [Lecture 06: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_qxDGE1-S_LE)
   - [ ] [Lecture 07: orders of growth](https://archive.org/details/ucberkeley_webcast_32L5j10rrK0)
   - [ ] [Lecture 08: recursion and iteration](https://archive.org/details/ucberkeley_webcast_0G3tNuBBO5I)
 
