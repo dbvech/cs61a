@@ -8,9 +8,9 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Functional programming**
 
-- [x] Reading (Section 1.1)
-- [x] Homework
-- [x] Labs
+- [x] Reading ([Section 1.1](https://sarabander.github.io/sicp/html/1_002e1.xhtml#g_t1_002e1))
+- [x] Homework ([solution](week-1/hw))
+- [x] Labs ([Lab 1 solution](week-1/lab-1), [Lab 2 solution](week-1/lab-2))
 - [x] Watch
   - [x] [Lecture 01: functional programming 1](https://archive.org/details/ucberkeley_webcast_l28HAzKy0N8)
   - [x] [Lecture 02: functional programming 2](https://archive.org/details/ucberkeley_webcast_TTK2lZoWbPQ)
@@ -19,9 +19,9 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Higher-order procedures**
 
-- [x] Reading (Section 1.3)
-- [x] Homework
-- [x] Labs
+- [x] Reading ([Section 1.3](https://sarabander.github.io/sicp/html/1_002e3.xhtml#g_t1_002e3))
+- [x] Homework ([solution](week-2/hw))
+- [x] Labs ([solution](week-2/lab))
 - [x] Watch
   - [x] [Lecture 03: higher-order procedures 1](https://archive.org/details/ucberkeley_webcast_ogIGxEzvnSE)
   - [x] [Lecture 04: higher-order procedures 2](https://archive.org/details/ucberkeley_webcast_ZvH3wF2qg7Q)
@@ -30,8 +30,8 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Recursion and iteration**
 
-- [x] Reading (Section 1.2 through 1.2.4)
-- [x] Homework
+- [x] Reading ([Section 1.2 through 1.2.4](https://sarabander.github.io/sicp/html/1_002e2.xhtml#g_t1_002e2))
+- [x] Homework ([solution](week-3/hw))
 - [ ] Labs
 - [ ] Watch
   - [x] [Lecture 05: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_dC4YGxzoAXk)
