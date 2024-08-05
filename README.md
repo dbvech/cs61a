@@ -32,12 +32,12 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 - [x] Reading ([Section 1.2 through 1.2.4](https://sarabander.github.io/sicp/html/1_002e2.xhtml#g_t1_002e2))
 - [x] Homework ([solution](week-3/hw))
-- [ ] Labs
-- [ ] Watch
+- [x] Labs ([solution](week-3/lab))
+- [x] Watch
   - [x] [Lecture 05: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_dC4YGxzoAXk)
   - [x] [Lecture 06: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_qxDGE1-S_LE)
-  - [ ] [Lecture 07: orders of growth](https://archive.org/details/ucberkeley_webcast_32L5j10rrK0)
-  - [ ] [Lecture 08: recursion and iteration](https://archive.org/details/ucberkeley_webcast_0G3tNuBBO5I)
+  - [x] [Lecture 07: orders of growth](https://archive.org/details/ucberkeley_webcast_32L5j10rrK0)
+  - [x] [Lecture 08: recursion and iteration](https://archive.org/details/ucberkeley_webcast_0G3tNuBBO5I)
 
 ### Week 4
 
