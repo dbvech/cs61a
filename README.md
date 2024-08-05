@@ -15,6 +15,8 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 01: functional programming 1](https://archive.org/details/ucberkeley_webcast_l28HAzKy0N8)
   - [x] [Lecture 02: functional programming 2](https://archive.org/details/ucberkeley_webcast_TTK2lZoWbPQ)
 
+---
+
 ### Week 2
 
 **Topic: Higher-order procedures**
@@ -25,6 +27,8 @@ This repository documents my progress in completing the CS 61A Programming cours
 - [x] Watch
   - [x] [Lecture 03: higher-order procedures 1](https://archive.org/details/ucberkeley_webcast_ogIGxEzvnSE)
   - [x] [Lecture 04: higher-order procedures 2](https://archive.org/details/ucberkeley_webcast_ZvH3wF2qg7Q)
+
+---
 
 ### Week 3
 
@@ -39,54 +43,110 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 07: orders of growth](https://archive.org/details/ucberkeley_webcast_32L5j10rrK0)
   - [x] [Lecture 08: recursion and iteration](https://archive.org/details/ucberkeley_webcast_0G3tNuBBO5I)
 
+---
+
+### Project 1
+
+---
+
 ### Week 4
 
 **Topic: Data abstraction**
+
+- [ ] Reading ([Section 2.1](https://sarabander.github.io/sicp/html/2_002e1.xhtml#g_t2_002e1) and [Section 2.2.1](https://sarabander.github.io/sicp/html/2_002e2.xhtml#g_t2_002e2_002e1))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 09: data abstraction](https://archive.org/details/ucberkeley_webcast_Oy36XpGVyjA)
+  - [ ] [Lecture 10: sequences](https://archive.org/details/ucberkeley_webcast__qGeRWplPgc)
+  - [ ] [Lecture 11: Example: calculator](https://archive.org/details/ucberkeley_webcast_nzMPF59Ackg)
+
+---
+
+### Midterm 1
+
+---
 
 ### Week 5
 
 **Topic: Hierarchical data**
 
+- [ ] Reading ([Section 2.2.2-3](https://sarabander.github.io/sicp/html/2_002e2.xhtml#g_t2_002e2_002e2) and [Section 2.3.1-3](https://sarabander.github.io/sicp/html/2_002e3.xhtml#g_t2_002e3))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 12: hierarchical data](https://archive.org/details/ucberkeley_webcast_pSuEz5ZCVAg)
+  - [ ] [Lecture 13: hierarchical data](https://archive.org/details/ucberkeley_webcast_kbqJ3UGPgOc)
+  - [ ] [Lecture 14: Example: Scheme-1 interpr](https://archive.org/details/ucberkeley_webcast_3FjDrWv00Hc)
+
+---
+
+### Project 2
+
+---
+
 ### Week 6
 
 **Topic: Generic Operators**
+
+---
 
 ### Week 7
 
 **Topic: Object-oriented programming**
 
+---
+
 ### Week 8
 
 **Topic: Assignment, state, environments**
+
+---
 
 ### Week 9
 
 **Topic: Mutable data, vectors**
 
+---
+
 ### Week 10
 
 **Topic: client/server, concurrency**
+
+---
 
 ### Week 11
 
 **Topic: Streams**
 
+---
+
 ### Week 12
 
 **Topic: Metacircular evaluator**
+
+---
 
 ### Week 13
 
 **Topic: Analyzing evaluator, MapReduce**
 
+---
+
 ### Week 14
 
 **Topic: lazy evaluator, nondeterministic evaluator**
+
+---
 
 ### Week 15
 
 **Topic: Logic programming**
 
+---
+
 ### Week 16
 
 **Topic: Review**
+
+---
