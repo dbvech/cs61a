@@ -42,10 +42,7 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 06: user interface -Alan Kay-](https://archive.org/details/ucberkeley_webcast_qxDGE1-S_LE)
   - [x] [Lecture 07: orders of growth](https://archive.org/details/ucberkeley_webcast_32L5j10rrK0)
   - [x] [Lecture 08: recursion and iteration](https://archive.org/details/ucberkeley_webcast_0G3tNuBBO5I)
-
----
-
-### Project 1
+- [x] Project 1 ([solution](projects/project-1))
 
 ---
 
@@ -78,10 +75,7 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [ ] [Lecture 12: hierarchical data](https://archive.org/details/ucberkeley_webcast_pSuEz5ZCVAg)
   - [ ] [Lecture 13: hierarchical data](https://archive.org/details/ucberkeley_webcast_kbqJ3UGPgOc)
   - [ ] [Lecture 14: Example: Scheme-1 interpr](https://archive.org/details/ucberkeley_webcast_3FjDrWv00Hc)
-
----
-
-### Project 2
+- [ ] Project 2
 
 ---
 
