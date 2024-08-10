@@ -1,0 +1,11 @@
+(define (cxr-function wd)
+  (define (iter cmd lst)
+    (cond ((empty? cmd) lst)
+      ((eq? (first cmd) 'a) (iter (bf cmd) (car lst)))
+      ((eq? (first cmd) 'd) (iter (bf cmd) (cdr lst)))
+      (else (error "Unknown command"))))
+  (trace iter)
+  (lambda (lst) (iter (bf (bl wd)) lst)))
+
+((cxr-function 'cadadaar)
+ (list (list 1 (list 2 (list 3 4))) 5))
