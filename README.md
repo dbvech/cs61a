@@ -52,7 +52,7 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 - [x] Reading ([Section 2.1](https://sarabander.github.io/sicp/html/2_002e1.xhtml#g_t2_002e1) and [Section 2.2.1](https://sarabander.github.io/sicp/html/2_002e2.xhtml#g_t2_002e2_002e1))
 - [x] Homework ([solution](week-4/hw))
-- [ ] Labs
+- [x] Labs ([solution](week-4/lab))
 - [ ] Watch
   - [ ] [Lecture 09: data abstraction](https://archive.org/details/ucberkeley_webcast_Oy36XpGVyjA)
   - [ ] [Lecture 10: sequences](https://archive.org/details/ucberkeley_webcast__qGeRWplPgc)
