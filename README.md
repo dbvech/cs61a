@@ -65,9 +65,9 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Hierarchical data**
 
-- [ ] Reading ([Section 2.2.2-3](https://sarabander.github.io/sicp/html/2_002e2.xhtml#g_t2_002e2_002e2) and [Section 2.3.1-3](https://sarabander.github.io/sicp/html/2_002e3.xhtml#g_t2_002e3))
+- [x] Reading ([Section 2.2.2-3](https://sarabander.github.io/sicp/html/2_002e2.xhtml#g_t2_002e2_002e2) and [Section 2.3.1-3](https://sarabander.github.io/sicp/html/2_002e3.xhtml#g_t2_002e3))
 - [ ] Homework
-- [ ] Labs
+- [x] Labs ([solution](week-5/lab))
 - [ ] Watch
   - [ ] [Lecture 12: hierarchical data](https://archive.org/details/ucberkeley_webcast_pSuEz5ZCVAg)
   - [ ] [Lecture 13: hierarchical data](https://archive.org/details/ucberkeley_webcast_kbqJ3UGPgOc)
