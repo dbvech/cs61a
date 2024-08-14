@@ -41,7 +41,7 @@
     (if (> n count)
 	'()
 	(cons (instantiate place (word name '- n))
-	      (iter (+ n 1)) )))
+	      (iter (1+ n)) )))
   (iter 1))
 
 (define *object-types* '(gold lead pizza potstickers burritos))
@@ -89,5 +89,5 @@
     (if (> count limit)
 	'done ;; dotimes is for side-effect
 	(begin (f count)
-	       (dotimes-iter (+ count 1)))))
+	       (dotimes-iter (1+ count)))))
   (dotimes-iter 1))

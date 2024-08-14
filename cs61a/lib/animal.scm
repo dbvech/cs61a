@@ -20,42 +20,36 @@
 
   (display (question node))
   (display " ")
-  (let ((yn (yorn)))
+  (let ((yn (yorn)) (correct #f) (newquest #f))
     (let ((next (if yn (yespart node) (nopart node))))
       (cond ((branch? next) (animal next))
 	    (else (display "Is it a ")
 		  (display (answer next))
 		  (display "? ")
-		  (let ((correctflag (yorn)))
-		    (cond (correct "I win!")
-			  (else (newline)
-				(display "I give up, what is it? ")
-				(let ((correct (read)))
-				  (newline)
-				  (display "Please tell me a question whose ")
-				  (display "answer is YES for a ")
-				  (display correct)
-				  (newline)
-				  (display "and NO for a ")
-				  (display (answer next))
-				  (display ".")
-				  (newline)
-				  (display "Enclose the question in ")
-				  (display "quotation marks.")
-				  (newline)
-				  (let ((newquest (read)))
-				    (if yn
-					(set-yes! node
-						  (make-branch
-						    newquest
-						    (make-leaf correct)
-						    next))
-					(set-no! node
-						 (make-branch
-						   newquest
-						   (make-leaf correct)
-						   next)))
-				    "Thanks.  Now I know better."))))))))
+		  (cond ((yorn) "I win!")
+			(else (newline)
+			      (display "I give up, what is it? ")
+			      (set! correct (read))
+			      (newline)
+ 			      (display "Please tell me a question whose answer ")
+			      (display "is YES for a ")
+			      (display correct)
+			      (newline)
+			      (display "and NO for a ")
+			      (display (answer next))
+			      (display ".")
+			      (newline)
+			      (display "Enclose the question in quotation marks.")
+			      (newline)
+			      (set! newquest (read))
+			      (if yn
+				  (set-yes! node (make-branch newquest
+							   (make-leaf correct)
+							   next))
+				  (set-no! node (make-branch newquest
+							  (make-leaf correct)
+							  next)))
+			      "Thanks.  Now I know better.")))))))
 
 (define (make-branch q y n)
   (list 'branch q y n))

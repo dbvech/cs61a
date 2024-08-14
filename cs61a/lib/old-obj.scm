@@ -1,14 +1,9 @@
-;;; obj.scm version 4.0 5/18/2000
+;;; obj.scm version 3.0 1/9/95
 ;;; -- implementation of the object-oriented syntax
+;;; This version is supposed to work with Unix SCM, PC SCM, and Mac Gambit
+;;; This version does class names right.
+;;; Also, explicit methods come before instance variable methods
 ;; By Matt Wright, based on a handout from MIT
-;; Revised for STk by Brian Gaeke - removed scm and procedure->macro
-
-;;; Utilities
-
-;; MAKNAM: create a new symbol whose name is the concatenation of the 
-;; names of those in the symbol list SYMBOLS.
-(define (maknam . symbols)
-  (string->symbol (apply string-append (map symbol->string symbols))))
 
 ;; ASK: send a message to an object
 
@@ -27,7 +22,7 @@
   (let ((method (object message)))
     (if (method? method)
 	(apply method args)
-	(error "No method " message " in class " (cadr method)))))
+	(error "No method" message (cadr method)))))
 
 (define (no-method name)
   (list 'no-method name))
@@ -71,8 +66,10 @@
 ;; Note: The 'send-usual-to-parent method is put in automatically by
 ;; define-class.
 
-(define-macro (usual . args)
-	     `(ask dispatch 'send-usual-to-parent . ,args))
+(if scm?
+    (defmacro usual args `(ask dispatch 'send-usual-to-parent . ,args))
+    (eval '(define-macro (usual . args)
+	     `(ask dispatch 'send-usual-to-parent . ,args))))
 
 
 ;; DEFINE-CLASS:  Create a new class.
@@ -95,16 +92,18 @@
 ; procedure that lets you examine the result of the OOP-to-Scheme
 ; translation process.
 
-(define-macro (define-class . body) (make-definitions body))
+(if scm?
+    (defmacro define-class body (make-definitions body))
+    (eval '(define-macro (define-class . body) (make-definitions body))))
 
 (define (make-definitions form)
   (let ((definition (translate form)))
-    (eval `(define ,(maknam (class-name form) '-definition) ',definition))
+    (eval `(define ,(word (class-name form) '-definition) ',definition))
     (eval definition)
     (list 'quote (class-name form))))
 
 (define (show-class name)
-  (eval (maknam name '-definition)) )
+  (eval (word name '-definition)) )
 
 ; TRANSLATE does all the work of DEFINE-CLASS.
 ; The backquote operator (`) works just like regular quote (') except
@@ -144,7 +143,7 @@
 
 (define (extra-clauses form)
   (obj-filter (cdr form)
-	      (lambda (x) (null? (member (car x) *legal-clauses*)))))
+	      (lambda (x) (not (member? (car x) *legal-clauses*)))))
 
 (define class-name caar)
 
@@ -161,7 +160,7 @@
     (if (null? parent-clause)
 	'()
 	(map (lambda (parent-and-args)
-	       (list (maknam 'my- (car parent-and-args))
+	       (list (word 'my- (car parent-and-args))
 		     (cons 'instantiate-parent parent-and-args)))
 	     (cdr parent-clause)))))
 
@@ -178,7 +177,7 @@
 	  '()
 	  (map
 	   (lambda (parent-and-args)
-	     `(ask ,(maknam 'my- (car parent-and-args)) 'initialize self) )
+	     `(ask ,(word 'my- (car parent-and-args)) 'initialize self) )
 	   (cdr parent-clause) ))))
   (define (my-initialization form)
     (let ((init-clause (find-a-clause 'initialize form)))
@@ -227,7 +226,7 @@
   (let ((parent-clause (find-a-clause 'parent form)))
     (if (null? parent-clause)
 	'()
-	(map (lambda (class) (maknam 'my- class))
+	(map (lambda (class) (word 'my- class))
 	     (map car (cdr parent-clause))))))
 
 (define (usual-clause form)
@@ -276,4 +275,3 @@
 	 (cons (car l) (obj-filter (cdr l) pred)))
 	(else (obj-filter (cdr l) pred))))
 
-(provide "obj")

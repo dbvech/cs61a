@@ -22,7 +22,7 @@
 
 
 
-;;; Problem 4   variables   (logo-meta.scm is also affected)
+;;; Problem B3   variables   (logo-meta.scm is also affected)
 
 (define (make env var val) 
   (error "make not written yet!") 
@@ -113,7 +113,7 @@
                        (set! lookahead char)   
                        result)) 
                    '-)) 
-              ((eq? char #\[) (logo-read-help (+ depth 1)))  
+              ((eq? char #\[) (logo-read-help (1+ depth)))  
               ((pair? char) (get-symbol char))
               ((eq? char #\")   
                (let ((char (get-char)))   
@@ -133,14 +133,12 @@
              '()) 
 	    ((eq? char #\space)
 	     (let ((char (after-space)))
-	       (cond ((eq? char #\newline)
-		      (begin (if (> depth 0) (set! lookahead char))
-			     '()))
-		     ((eq? char #\])
-		      (if (> depth 0) '() (error "Unexpected ]")))
-		     (else (set! lookahead char)
-			   (let ((token (get-token #t)))
-			     (cons token (logo-read-help depth)))))))
+	       (if (eq? char #\newline)
+		   (begin (if (> depth 0) (set! lookahead char))
+			  '())
+		   (begin (set! lookahead char)
+			  (let ((token (get-token #t)))
+			    (cons token (logo-read-help depth)))))))
             ((eq? char #\])   
              (if (> depth 0) '() (error "Unexpected ]")))
             ((eof-object? char) char)   

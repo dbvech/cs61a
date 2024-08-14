@@ -124,10 +124,6 @@
 	(paint-left frame)
 	(paint-right frame)))))
 
-;;
-;; Your code goes here
-;;
-
 (define full-frame (make-frame (make-vect -0.5 -0.5)
 			       (make-vect 2 0)
 			       (make-vect 0 2)))

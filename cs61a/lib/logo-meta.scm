@@ -12,7 +12,7 @@
 ;;; the Logo evaluator back into Scheme.
 
 ;;; Problems A1, A2, and B2 are entirely in logo.scm
-;;; Problems 3, 7, and 8 require you to find and change existing procedures.
+;;; Problems A3, B3, and 6 require you to find and change existing procedures.
 
 ;;;  Procedures that you must write from scratch:
 
@@ -22,7 +22,7 @@
   (error "eval-line not written yet!"))
 
 
-;;; Problem 4    variables  (other procedures must be modified, too)
+;;; Problem B3    variables  (other procedures must be modified, too)
 ;;; data abstraction procedures
 
 (define (variable? exp)
@@ -32,7 +32,7 @@
   (error "variable-name not written yet!"))
 
 
-;;; Problem A5   handle-infix
+;;; Problem A4   handle-infix
 
 (define (de-infix token)
   (cdr (assoc token '((+ . sum)
@@ -47,16 +47,16 @@
   value)   ;; This doesn't give an error message, so other stuff works.
 
 
-;;; Problem B5    eval-definition
+;;; Problem B4    eval-definition
 
 (define (eval-definition line-obj)
   (error "eval-definition not written yet!"))
 
 
-;;; Problem 6    eval-sequence
+;;; Problem 5    eval-sequence
 
 (define (eval-sequence exps env)
-  (error "eval-sequence not written yet!"))
+  (error "eval-seqence not written yet!"))
 
 
 
@@ -188,14 +188,19 @@
 	       (logo-apply proc
 			   (collect-n-args (arg-count proc)
 					   line-obj
-					   env) ))) )))
+					   env)
+			   env))) )))
   (eval-helper #f))
 
-(define (logo-apply procedure arguments)
+(define (logo-apply procedure arguments env)
   (cond ((primitive-procedure? procedure)
          (apply-primitive-procedure procedure arguments))
         ((compound-procedure? procedure)
-	 (error "Compound procedures not implemented yet."))
+         (eval-sequence (procedure-body procedure)
+                        (extend-environment
+                         (parameters procedure)
+                         arguments
+                         env)))
         (else
          (error "Unknown procedure type -- LOGO-APPLY" procedure))))
 
@@ -208,11 +213,11 @@
 	       '()
       	       (let ((next (logo-eval line-obj env)))
         	 (cons next
-	      	       (collect-n-args (- n 1) line-obj env)) ))))
+	      	       (collect-n-args (-1+ n) line-obj env)) ))))
 	(else      
       	 (let ((next (logo-eval line-obj env)))
            (cons next
-	      	 (collect-n-args (- n 1) line-obj env)) ))))
+	      	 (collect-n-args (-1+ n) line-obj env)) ))))
 
 ;;; Section 4.1.2 -- Representing expressions
 

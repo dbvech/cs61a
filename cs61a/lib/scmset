@@ -1,0 +1,2 @@
+setenv SCM_INIT_PATH ~cs61a/scm/Init.scm
+setenv SCHEME_LIBRARY_PATH ~cs61a/slib/

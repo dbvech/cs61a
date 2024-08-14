@@ -124,7 +124,7 @@
 ;;(put 'lisp-value 'qeval lisp-value)
 
 (define (execute exp)
-  (apply (eval (predicate exp)) ; (eval (...) user-initial-environment)
+  (apply (eval (predicate exp))    ; (eval (...) user-initial-environment)
          (args exp)))
 
 (define (always-true ignore frame-stream) frame-stream)

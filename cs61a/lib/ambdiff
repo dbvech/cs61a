@@ -1,0 +1,309 @@
+1,2c1,2
+< ;;;;METACIRCULAR EVALUATOR THAT SEPARATES ANALYSIS FROM EXECUTION
+< ;;;; FROM SECTION 4.1.7 OF STRUCTURE AND INTERPRETATION OF COMPUTER PROGRAMS
+---
+> ;;;;AMB EVALUATOR FROM SECTION 4.3 OF
+> ;;;; STRUCTURE AND INTERPRETATION OF COMPUTER PROGRAMS
+4c4,7
+< ;;;;Matches code in ch4.scm
+---
+> ;;;;Matches code in ch4.scm.
+> ;;;; To run the sample programs and exercises, code below also includes
+> ;;;; -- enlarged primitive-procedures list
+> ;;;; -- support for Let (as noted in footnote 56, p.428)
+18c21
+< ;;Note: It is loaded first so that the section 4.1.7 definition
+---
+> ;;Note: It is loaded first so that the section 4.2 definition
+20c23
+< (load "61a/lib/mceval.scm")
+---
+> (load "~/61a/lib/mceval.scm")
+22d24
+< ;;;SECTION 4.1.7
+24,25d25
+< (define (mc-eval exp env)
+<   ((analyze exp) env))
+26a27,33
+> ;;;Code from SECTION 4.3.3, modified as needed to run it
+> 
+> (define (amb? exp) (tagged-list? exp 'amb))
+> (define (amb-choices exp) (cdr exp))
+> 
+> ;; analyze from 4.1.6, with clause from 4.3.3 added
+> ;; and also support for Let
+37a45,46
+>         ((let? exp) (analyze (let->combination exp))) ;**
+>         ((amb? exp) (analyze-amb exp))                ;**
+41a51,55
+> (define (ambeval exp env succeed fail)
+>   ((analyze exp) env succeed fail))
+> 
+> ;;;Simple expressions
+> 
+43c57,58
+<   (lambda (env) exp))
+---
+>   (lambda (env succeed fail)
+>     (succeed exp fail)))
+47c62,63
+<     (lambda (env) qval)))
+---
+>     (lambda (env succeed fail)
+>       (succeed qval fail))))
+50c66,68
+<   (lambda (env) (lookup-variable-value exp env)))
+---
+>   (lambda (env succeed fail)
+>     (succeed (lookup-variable-value exp env)
+>              fail)))
+52,57c70,75
+< (define (analyze-assignment exp)
+<   (let ((var (assignment-variable exp))
+<         (vproc (analyze (assignment-value exp))))
+<     (lambda (env)
+<       (set-variable-value! var (vproc env) env)
+<       'ok)))
+---
+> (define (analyze-lambda exp)
+>   (let ((vars (lambda-parameters exp))
+>         (bproc (analyze-sequence (lambda-body exp))))
+>     (lambda (env succeed fail)
+>       (succeed (make-procedure vars bproc env)
+>                fail))))
+59,64c77
+< (define (analyze-definition exp)
+<   (let ((var (definition-variable exp))
+<         (vproc (analyze (definition-value exp))))
+<     (lambda (env)
+<       (define-variable! var (vproc env) env)
+<       'ok)))
+---
+> ;;;Conditionals and sequences
+70,73c83,92
+<     (lambda (env)
+<       (if (true? (pproc env))
+<           (cproc env)
+<           (aproc env)))))
+---
+>     (lambda (env succeed fail)
+>       (pproc env
+>              ;; success continuation for evaluating the predicate
+>              ;; to obtain pred-value
+>              (lambda (pred-value fail2)
+>                (if (true? pred-value)
+>                    (cproc env succeed fail2)
+>                    (aproc env succeed fail2)))
+>              ;; failure continuation for evaluating the predicate
+>              fail))))
+75,79d93
+< (define (analyze-lambda exp)
+<   (let ((vars (lambda-parameters exp))
+<         (bproc (analyze-sequence (lambda-body exp))))
+<     (lambda (env) (make-procedure vars bproc env))))
+< 
+81,82c95,102
+<   (define (sequentially proc1 proc2)
+<     (lambda (env) (proc1 env) (proc2 env)))
+---
+>   (define (sequentially a b)
+>     (lambda (env succeed fail)
+>       (a env
+>          ;; success continuation for calling a
+>          (lambda (a-value fail2)
+>            (b env succeed fail2))
+>          ;; failure continuation for calling a
+>          fail)))
+92a113,143
+> ;;;Definitions and assignments
+> 
+> (define (analyze-definition exp)
+>   (let ((var (definition-variable exp))
+>         (vproc (analyze (definition-value exp))))
+>     (lambda (env succeed fail)
+>       (vproc env                        
+>              (lambda (val fail2)
+>                (define-variable! var val env)
+>                (succeed 'ok fail2))
+>              fail))))
+> 
+> (define (analyze-assignment exp)
+>   (let ((var (assignment-variable exp))
+>         (vproc (analyze (assignment-value exp))))
+>     (lambda (env succeed fail)
+>       (vproc env
+>              (lambda (val fail2)        ; *1*
+>                (let ((old-value
+>                       (lookup-variable-value var env))) 
+>                  (set-variable-value! var val env)
+>                  (succeed 'ok
+>                           (lambda ()    ; *2*
+>                             (set-variable-value! var
+>                                                  old-value
+>                                                  env)
+>                             (fail2)))))
+>              fail))))
+> 
+> ;;;Procedure applications
+> 
+96,99c147,156
+<     (lambda (env)
+<       (execute-application (fproc env)
+<                            (map (lambda (aproc) (aproc env))
+<                                 aprocs)))))
+---
+>     (lambda (env succeed fail)
+>       (fproc env
+>              (lambda (proc fail2)
+>                (get-args aprocs
+>                          env
+>                          (lambda (args fail3)
+>                            (execute-application
+>                             proc args succeed fail3))
+>                          fail2))
+>              fail))))
+101c158,174
+< (define (execute-application proc args)
+---
+> (define (get-args aprocs env succeed fail)
+>   (if (null? aprocs)
+>       (succeed '() fail)
+>       ((car aprocs) env
+>                     ;; success continuation for this aproc
+>                     (lambda (arg fail2)
+>                       (get-args (cdr aprocs)
+>                                 env
+>                                 ;; success continuation for recursive
+>                                 ;; call to get-args
+>                                 (lambda (args fail3)
+>                                   (succeed (cons arg args)
+>                                            fail3))
+>                                 fail2))
+>                     fail)))
+> 
+> (define (execute-application proc args succeed fail)
+103c176,177
+<          (apply-primitive-procedure proc args))
+---
+>          (succeed (apply-primitive-procedure proc args)
+>                   fail))
+108c182,184
+<                               (procedure-environment proc))))
+---
+>                               (procedure-environment proc))
+>           succeed
+>           fail))
+113a190,291
+> ;;;amb expressions
+> 
+> (define (analyze-amb exp)
+>   (let ((cprocs (map analyze (amb-choices exp))))
+>     (lambda (env succeed fail)
+>       (define (try-next choices)
+>         (if (null? choices)
+>             (fail)
+>             ((car choices) env
+>                            succeed
+>                            (lambda ()
+>                              (try-next (cdr choices))))))
+>       (try-next cprocs))))
+> 
+> ;;;Driver loop
+> 
+> (define input-prompt ";;; Amb-Eval input:")
+> (define output-prompt ";;; Amb-Eval value:")
+> 
+> (define (driver-loop)
+>   (define (internal-loop try-again)
+>     (prompt-for-input input-prompt)
+>     (let ((input (read)))
+>       (if (eq? input 'try-again)
+>           (try-again)
+>           (begin
+>             (newline)
+>             (display ";;; Starting a new problem ")
+>             (ambeval input
+>                      the-global-environment
+>                      ;; ambeval success
+>                      (lambda (val next-alternative)
+>                        (announce-output output-prompt)
+>                        (user-print val)
+>                        (internal-loop next-alternative))
+>                      ;; ambeval failure
+>                      (lambda ()
+>                        (announce-output
+>                         ";;; There are no more values of")
+>                        (user-print input)
+>                        (driver-loop)))))))
+>   (internal-loop
+>    (lambda ()
+>      (newline)
+>      (display ";;; There is no current problem")
+>      (driver-loop))))
+> 
+> 
+> 
+> ;;; Support for Let (as noted in footnote 56, p.428)
+> 
+> (define (let? exp) (tagged-list? exp 'let))
+> (define (let-bindings exp) (cadr exp))
+> (define (let-body exp) (cddr exp))
+> 
+> (define (let-var binding) (car binding))
+> (define (let-val binding) (cadr binding))
+> 
+> (define (make-combination operator operands) (cons operator operands))
+> 
+> (define (let->combination exp)
+>   ;;make-combination defined in earlier exercise
+>   (let ((bindings (let-bindings exp)))
+>     (make-combination (make-lambda (map let-var bindings)
+>                                    (let-body exp))
+>                       (map let-val bindings))))
+>                      
+> 
+> 
+> ;; A longer list of primitives -- suitable for running everything in 4.3
+> ;; Overrides the list in ch4-mceval.scm
+> ;; Has Not to support Require; various stuff for code in text (including
+> ;;  support for Prime?); integer? and sqrt for exercise code;
+> ;;  eq? for ex. solution
+> 
+> (define primitive-procedures
+>   (list (list 'car car)
+>         (list 'cdr cdr)
+>         (list 'cons cons)
+>         (list 'null? null?)
+>         (list 'list list)
+> 	(list 'append append)
+>         (list 'memq memq)
+>         (list 'member member)
+>         (list 'not not)
+>         (list '+ +)
+>         (list '- -)
+>         (list '* *)
+>         (list '= =)
+>         (list '> >)
+>         (list '>= >=)
+>         (list 'abs abs)
+>         (list 'remainder remainder)
+>         (list 'integer? integer?)
+>         (list 'sqrt sqrt)
+>         (list 'eq? eq?)
+> 	(list 'equal? equal?)
+> 	(list 'pair? pair?)
+> ;;      more primitives
+>         ))
+> 
+> 
+116,117c294,300
+< (define input-prompt ";;; A-Eval input:")
+< (define output-prompt ";;; A-Eval value:")
+---
+> (define (mce)
+>   (set! the-global-environment (setup-environment))
+>   (ambeval '(define (require p) (if (not p) (amb)))
+> 	   the-global-environment
+> 	   (lambda (a b) #t)
+> 	   (lambda () #t))
+>   (driver-loop))

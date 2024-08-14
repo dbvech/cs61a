@@ -20,7 +20,7 @@
 ;;**implementation-dependent loading of evaluator file
 ;;Note: It is loaded first so that the section 4.2 definition
 ;; of eval overrides the definition from 4.1.1
-(load "~cs61a/lib/mceval.scm")
+(load "~/61a/Lib/mceval.scm")
 
 
 
@@ -262,8 +262,6 @@
 ;;  support for Prime?); integer? and sqrt for exercise code;
 ;;  eq? for ex. solution
 
-;; modified by JDL (5-5-2000)
-
 (define primitive-procedures
   (list (list 'car car)
         (list 'cdr cdr)
@@ -277,28 +275,16 @@
         (list '+ +)
         (list '- -)
         (list '* *)
-	(list '/ /)
         (list '= =)
         (list '> >)
         (list '>= >=)
-        (list '< <)
-        (list '<= <=)
         (list 'abs abs)
         (list 'remainder remainder)
-        (list 'quotient quotient)
-        (list 'number? number?)
         (list 'integer? integer?)
-        (list 'boolean? boolean?)
-        (list 'string? string?)
         (list 'sqrt sqrt)
         (list 'eq? eq?)
 	(list 'equal? equal?)
-	(list 'se se)
-	(list 'sentence se)
-	(list 'first first)
-	(list 'butfirst bf)
-	(list 'bf bf)
-        (list 'display display)
+	(list 'pair? pair?)
 ;;      more primitives
         ))
 

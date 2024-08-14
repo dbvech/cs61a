@@ -17,8 +17,7 @@
 ;;**implementation-dependent loading of evaluator file
 ;;Note: It is loaded first so that the section 4.1.7 definition
 ;; of eval overrides the definition from 4.1.1
-;; modified 8/2/2000 by jeremy to add path 
-(load "~cs61a/lib/mceval.scm")
+(load "61a/Lib/mceval.scm")
 
 ;;;SECTION 4.1.7
 
