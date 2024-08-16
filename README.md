@@ -66,19 +66,26 @@ This repository documents my progress in completing the CS 61A Programming cours
 **Topic: Hierarchical data**
 
 - [x] Reading ([Section 2.2.2-3](https://sarabander.github.io/sicp/html/2_002e2.xhtml#g_t2_002e2_002e2) and [Section 2.3.1-3](https://sarabander.github.io/sicp/html/2_002e3.xhtml#g_t2_002e3))
-- [ ] Homework
+- [x] Homework ([solution](week-5/hw))
 - [x] Labs ([solution](week-5/lab))
-- [ ] Watch
-  - [ ] [Lecture 12: hierarchical data](https://archive.org/details/ucberkeley_webcast_pSuEz5ZCVAg)
-  - [ ] [Lecture 13: hierarchical data](https://archive.org/details/ucberkeley_webcast_kbqJ3UGPgOc)
-  - [ ] [Lecture 14: Example: Scheme-1 interpr](https://archive.org/details/ucberkeley_webcast_3FjDrWv00Hc)
-- [ ] Project 2
+- [x] Watch
+  - [x] [Lecture 12: hierarchical data](https://archive.org/details/ucberkeley_webcast_pSuEz5ZCVAg)
+  - [x] [Lecture 13: hierarchical data](https://archive.org/details/ucberkeley_webcast_kbqJ3UGPgOc)
+  - [x] [Lecture 14: Example: Scheme-1 interpr](https://archive.org/details/ucberkeley_webcast_3FjDrWv00Hc)
+- [x] Project 2 ([solution](projects/project-2))
 
 ---
 
 ### Week 6
 
 **Topic: Generic Operators**
+
+- [ ] Reading ([Section 2.4 through 2.5.2](https://sarabander.github.io/sicp/html/2_002e4.xhtml#g_t2_002e4))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 16: generic operators](https://archive.org/details/ucberkeley_webcast_rz_XpDhDtFI)
+  - [ ] [Lecture 17: generic operators](https://archive.org/details/ucberkeley_webcast_8HDIqZ2ZqKI)
 
 ---
 
