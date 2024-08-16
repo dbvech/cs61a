@@ -1,0 +1,55 @@
+(define wave
+  (segments->painter
+   (list (make-segment (make-vect .26 .00)
+                       (make-vect .37 .56))
+         (make-segment (make-vect .37 .56)
+                       (make-vect .16 .48))
+         (make-segment (make-vect .16 .48)
+                       (make-vect .00 .63))
+         (make-segment (make-vect .00 .74)
+                       (make-vect .16 .61))
+         (make-segment (make-vect .16 .61)
+                       (make-vect .31 .70))
+         (make-segment (make-vect .31 .70)
+                       (make-vect .42 .70))
+         (make-segment (make-vect .42 .70)
+                       (make-vect .31 .83))
+         (make-segment (make-vect .31 .83)
+                       (make-vect .41 1.0))
+         (make-segment (make-vect .55 1.0)
+                       (make-vect .63 .83))
+         (make-segment (make-vect .63 .83)
+                       (make-vect .55 .70))
+         (make-segment (make-vect .55 .70)
+                       (make-vect .68 .70))
+         (make-segment (make-vect .68 .70)
+                       (make-vect 1.0 .42))
+         (make-segment (make-vect 1.0 .30)
+                       (make-vect .63 .56))
+         (make-segment (make-vect .63 .56)
+                       (make-vect .79 .00))
+         (make-segment (make-vect .65 .00)
+                       (make-vect .50 .30))
+         (make-segment (make-vect .50 .30)
+                       (make-vect .42 .00))
+         (make-segment (make-vect .43 .80) ; <- smile starts here
+                       (make-vect .45 .76))
+         (make-segment (make-vect .45 .76)
+                       (make-vect .52 .76))
+         (make-segment (make-vect .52 .76)
+                       (make-vect .55 .80)))))
+
+(define (corner-split painter n)
+  (if (= n 0)
+    painter
+    (beside (below painter (up-split painter (- n 1)))
+            (below (right-split painter (- n 1))
+                   (rotate180 (corner-split painter (- n 1)))))))
+
+(define (square-limit painter n)
+  (let ((combine4
+         (square-of-four flip-horiz
+                         identity
+                         rotate180
+                         flip-vert)))
+    (combine4 (corner-split (flip-horiz painter) n))))
