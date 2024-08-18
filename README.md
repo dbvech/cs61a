@@ -93,11 +93,29 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Object-oriented programming**
 
+- [ ] Reading ([oop_aboveline.pdf](cs61a/docs/course_reader_vol_2/oop_programming_above_line_view.pdf))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 18: object-oriented programming](https://archive.org/details/ucberkeley_webcast_jq1v8YUftxE)
+  - [ ] [Lecture 19: object oriented programming](https://archive.org/details/ucberkeley_webcast_S9mGKy3Dzqw)
+  - [ ] [Lecture 20: object oriented programming](https://archive.org/details/ucberkeley_webcast_AYoW8-L2dTQ)
+- [ ] Midterm 2
+
 ---
 
 ### Week 8
 
 **Topic: Assignment, state, environments**
+
+- [ ] Reading ([Section 3.1, 3.2](https://sarabander.github.io/sicp/html/Chapter-3.xhtml#Chapter-3), [oop_belowline.pdf](cs61a/docs/course_reader_vol_2/oop_programming_below_line_view.pdf))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 21: assignment and state](https://archive.org/details/ucberkeley_webcast_crlcqL7lKME)
+  - [ ] [Lecture 22: environments](https://archive.org/details/ucberkeley_webcast_uxvRoOV9nOk)
+  - [ ] [Lecture 23: environments](https://archive.org/details/ucberkeley_webcast_jmDguUbxOns)
+- [ ] Project 3(a)
 
 ---
 
