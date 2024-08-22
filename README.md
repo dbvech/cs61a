@@ -81,11 +81,11 @@ This repository documents my progress in completing the CS 61A Programming cours
 **Topic: Generic Operators**
 
 - [x] Reading ([Section 2.4 through 2.5.2](https://sarabander.github.io/sicp/html/2_002e4.xhtml#g_t2_002e4))
-- [ ] Homework
+- [x] Homework ([solution](week-6/hw))
 - [x] Labs ([solution](week-6/lab))
-- [ ] Watch
-  - [ ] [Lecture 16: generic operators](https://archive.org/details/ucberkeley_webcast_rz_XpDhDtFI)
-  - [ ] [Lecture 17: generic operators](https://archive.org/details/ucberkeley_webcast_8HDIqZ2ZqKI)
+- [x] Watch
+  - [x] [Lecture 16: generic operators](https://archive.org/details/ucberkeley_webcast_rz_XpDhDtFI)
+  - [x] [Lecture 17: generic operators](https://archive.org/details/ucberkeley_webcast_8HDIqZ2ZqKI)
 
 ---
 
