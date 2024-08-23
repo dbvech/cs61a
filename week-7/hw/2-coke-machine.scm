@@ -1,0 +1,18 @@
+(load "../../cs61a/lib/obj")
+
+(define-class (coke-machine size price-cent)
+  (instance-vars (available 0) (money 0))
+  (method (deposit amount)
+          (set! money (+ money amount)))
+  (method (coke)
+          (cond ((= available 0) (error "Machine empty"))
+            ((< money price-cent) (error "Not enough money"))
+            (else (let ((change (- money price-cent)))
+                    (set! money 0)
+                    (set! available (- available 1))
+                    change))))
+  (method (fill number)
+          (let ((next (+ available number)))
+            (set! available (if (> next size) size next)))))
+
+(define my-machine (instantiate coke-machine 80 70))
