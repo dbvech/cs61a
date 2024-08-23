@@ -93,9 +93,9 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Object-oriented programming**
 
-- [ ] Reading ([oop_aboveline.pdf](cs61a/docs/course_reader_vol_2/oop_programming_above_line_view.pdf))
+- [x] Reading ([oop_aboveline.pdf](cs61a/docs/course_reader_vol_2/oop_programming_above_line_view.pdf))
 - [ ] Homework
-- [ ] Labs
+- [x] Labs ([solution](week-7/lab))
 - [ ] Watch
   - [ ] [Lecture 18: object-oriented programming](https://archive.org/details/ucberkeley_webcast_jq1v8YUftxE)
   - [ ] [Lecture 19: object oriented programming](https://archive.org/details/ucberkeley_webcast_S9mGKy3Dzqw)
