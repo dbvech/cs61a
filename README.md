@@ -108,9 +108,9 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Assignment, state, environments**
 
-- [ ] Reading ([Section 3.1, 3.2](https://sarabander.github.io/sicp/html/Chapter-3.xhtml#Chapter-3), [oop_belowline.pdf](cs61a/docs/course_reader_vol_2/oop_programming_below_line_view.pdf))
+- [x] Reading ([Section 3.1, 3.2](https://sarabander.github.io/sicp/html/Chapter-3.xhtml#Chapter-3), [oop_belowline.pdf](cs61a/docs/course_reader_vol_2/oop_programming_below_line_view.pdf))
 - [ ] Homework
-- [ ] Labs
+- [x] Labs ([solution](week-8/lab))
 - [ ] Watch
   - [ ] [Lecture 21: assignment and state](https://archive.org/details/ucberkeley_webcast_crlcqL7lKME)
   - [ ] [Lecture 22: environments](https://archive.org/details/ucberkeley_webcast_uxvRoOV9nOk)
