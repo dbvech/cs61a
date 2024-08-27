@@ -1,0 +1,30 @@
+(define (make-account balance password)
+  (define (withdraw amount)
+    (if (>= balance amount)
+      (begin (set! balance
+                   (- balance amount))
+             balance)
+      "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (define (call-the-cops)
+    (display "Calling 9-1-1")
+    (newline))
+  (let ((incorrect-attempts 0))
+    (define (dispatch secret m)
+      (if (not (eq? secret password))
+        (begin
+         (set! incorrect-attempts (+ incorrect-attempts 1))
+         (if (> incorrect-attempts 7)
+           (call-the-cops)
+           '())
+         (lambda (_) "Incorrect password"))
+        (begin
+         (set! incorrect-attempts 0)
+         (cond
+           ((eq? m 'withdraw) withdraw)
+           ((eq? m 'deposit) deposit)
+           (else (error "Unknown request: 
+                 MAKE-ACCOUNT" m))))))
+    dispatch))

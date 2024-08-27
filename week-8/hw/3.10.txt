@@ -1,0 +1,74 @@
+global env |-----------------------------------------------------|
+           | make-withdraw: procedure                            |
+           | W1: procedure                                       |
+           | W2: procedure                                       |
+           |-----------------------------------------------------|
+
+first we define procedure make-withdraw, so it will create binding in global env
+
+make-withdraw:
+( )( )----> global env
+ |
+ |
+\|/
+params: initial-amount
+body: (let ...)
+
+
+then we call (define W1 (make-withdraw 100)), it creates new frame (E1) 
+to invoke the procedure make-withdraw within it
+
+E1 |----------------------|
+   | initial-amount: 100  |-----> global env
+   |----------------------|
+
+in the body of make-withdraw we evaluating "let" expr and it creates another frame (E2)
+
+E2 |-------------------------------------|
+   | balance: 100 (from initial-amount)  |-----> E1
+   |-------------------------------------|
+
+"let" expression returns a new procedure and that is what binds to W1 variable in global env
+
+W1:
+( )( )----> E2 (cause it was created in E2 env)
+ |
+ |
+\|/
+params: amount
+body: (if ...)
+
+
+then we call (W1 50) which creates another frame (E3)
+
+E3 |--------------|
+   | amount 50    |-----> E2
+   |--------------|
+
+set! inside the body of W1 procedure will change "balance" variable (in E2) (- 100 50) -> 50
+and returns new balance (50)
+
+then we call (define W2 (make-withdraw 100)), it creates new frame (E4) 
+to invoke the procedure make-withdraw within it
+
+E4 |----------------------|
+   | initial-amount: 100  |-----> global env
+   |----------------------|
+
+in the body of make-withdraw we evaluating "let" expr and it creates another frame (E5)
+
+E5 |-------------------------------------|
+   | balance: 100 (from initial-amount)  |-----> E4
+   |-------------------------------------|
+
+"let" expression returns a new procedure and that is what binds to W2 variable in global env
+
+W2:
+( )( )----> E5 (cause it was created in E5 env)
+ |
+ |
+\|/
+params: amount
+body: (if ...)
+
+Overall, it works same as version without let (with balance defined as format param of the make-withdraw procedure). The only difference is that version with let creates extra frame (for let) for each call of make-withdraw procedure.
