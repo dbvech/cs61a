@@ -74,6 +74,9 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 14: Example: Scheme-1 interpr](https://archive.org/details/ucberkeley_webcast_3FjDrWv00Hc)
 - [x] Project 2 ([solution](projects/project-2))
 
+> [!NOTE]
+> Lecture 15 is not given due to a half-term
+
 ---
 
 ### Week 6
@@ -115,7 +118,7 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 21: assignment and state](https://archive.org/details/ucberkeley_webcast_crlcqL7lKME)
   - [x] [Lecture 22: environments](https://archive.org/details/ucberkeley_webcast_uxvRoOV9nOk)
   - [x] [Lecture 23: environments](https://archive.org/details/ucberkeley_webcast_jmDguUbxOns)
-- [ ] Project 3(a)
+- [ ] Project 3 part 1
 
 ---
 
@@ -123,17 +126,45 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Mutable data, vectors**
 
+- [ ] Reading ([Section 3.3.1–3](https://sarabander.github.io/sicp/html/3_002e3.xhtml#g_t3_002e3))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 24: mutable data](https://archive.org/details/ucberkeley_webcast_OCocDioUZOo)
+  - [ ] [Lecture 25: mutable data](https://archive.org/details/ucberkeley_webcast_YgUZP1YbHsM)
+  - [ ] [Lecture 26: vectors](https://archive.org/details/ucberkeley_webcast_vV7gargdGxU)
+- [ ] Project 3 part 2
+
+> [!NOTE]
+> Lecture 27-29 is not given due to spring break]
+
 ---
 
 ### Week 10
 
 **Topic: client/server, concurrency**
 
+- [ ] Reading ([Section 3.4](https://sarabander.github.io/sicp/html/3_002e4.xhtml#g_t3_002e4))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 30: client-server programming](https://archive.org/details/ucberkeley_webcast_Lr4zVJPpMrM)
+  - [ ] [Lecture 31: concurrency](https://archive.org/details/ucberkeley_webcast_tfTD0B8dX7I)
+  - [ ] [Lecture 32: concurrency](https://archive.org/details/ucberkeley_webcast_a_qhlzmXqAo)
+
 ---
 
 ### Week 11
 
 **Topic: Streams**
+
+- [ ] Reading ([3.5.1–3, 3.5.5](https://sarabander.github.io/sicp/html/3_002e5.xhtml#g_t3_002e5))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 33: streams](https://archive.org/details/ucberkeley_webcast_LLl89UwSflo)
+  - [ ] [Lecture 34: streams](https://archive.org/details/ucberkeley_webcast_mtl0z0HgRTM)
+  - [ ] [Lecture 35: Therac-25](https://archive.org/details/ucberkeley_webcast_nxX-aAvZbmM)
 
 ---
 
