@@ -126,12 +126,12 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Mutable data, vectors**
 
-- [ ] Reading ([Section 3.3.1–3](https://sarabander.github.io/sicp/html/3_002e3.xhtml#g_t3_002e3))
+- [x] Reading ([Section 3.3.1–3](https://sarabander.github.io/sicp/html/3_002e3.xhtml#g_t3_002e3))
 - [ ] Homework
-- [ ] Labs
+- [x] Labs ([solution](week-9/lab))
 - [ ] Watch
-  - [ ] [Lecture 24: mutable data](https://archive.org/details/ucberkeley_webcast_OCocDioUZOo)
-  - [ ] [Lecture 25: mutable data](https://archive.org/details/ucberkeley_webcast_YgUZP1YbHsM)
+  - [x] [Lecture 24: mutable data](https://archive.org/details/ucberkeley_webcast_OCocDioUZOo)
+  - [x] [Lecture 25: mutable data](https://archive.org/details/ucberkeley_webcast_YgUZP1YbHsM)
   - [ ] [Lecture 26: vectors](https://archive.org/details/ucberkeley_webcast_vV7gargdGxU)
 - [ ] Project 3 part 2
 
