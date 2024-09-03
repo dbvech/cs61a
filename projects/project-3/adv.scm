@@ -2,7 +2,15 @@
 ;; This file contains the definitions for the objects in the adventure
 ;; game and some utility procedures.
 
+(define-class (basic-object)
+  (instance-vars (properties (make-table)))
+  (method (put attr val)
+    (insert! attr val properties))
+  (default-method (lookup message properties)))
+
 (define-class (place name)
+  (parent (basic-object))
+
   (instance-vars
    (directions-and-neighbors '())
    (things '())
@@ -10,6 +18,7 @@
    (entry-procs '())
    (exit-procs '()))
   (method (type) 'place)
+  (method (place?) #t)
   (method (neighbors) (map cdr directions-and-neighbors))
   (method (exits) (map car directions-and-neighbors))
   (method (look-in direction)
@@ -111,13 +120,46 @@
               (display " is unparked!")
               (newline)))))
 
+(define-class (hotspot name password)
+  (parent (place name))
+  (instance-vars
+   (connected-devices (list)))
+  (method (type) 'hotspot)
+  (method (connect the-laptop the-password)
+          (cond
+            ((not (laptop? the-laptop)) (error "The thing is not a laptop"))
+            ((not (eq? password the-password)) (error "Incorrect password"))
+            ((not (memq the-laptop (ask self 'things))) (error "The thing is not in hotspot place"))
+            ((memq the-laptop connected-devices) "Already connected")
+            (else (set! connected-devices
+                        (cons the-laptop connected-devices))
+                  (display "laptop connected: ")
+                  (display (ask the-laptop 'name))
+                  (newline))))
+  (method (surf the-laptop url)
+          (if (memq the-laptop connected-devices)
+            (system (string-append "curl " url))))
+  (method (gone thing)
+          (usual 'gone thing)
+          (if (and (laptop? thing)
+                   (memq thing connected-devices))
+            (begin
+             (set! connected-devices (delete thing connected-devices))
+             (display "laptop disconnected: ")
+             (display (ask thing 'name))
+             (newline)))))
+
 (define-class (person name place)
+  (parent (basic-object))
+
   (instance-vars
    (possessions '())
    (saying ""))
   (initialize
-   (ask place 'enter self))
+   (ask place 'enter self)
+   (ask self 'put 'strength 50))
   (method (type) 'person)
+  (method (person?) #t)
   (method (look-around)
     (map (lambda (obj) (ask obj 'name))
 	 (filter (lambda (thing) (not (eq? thing self)))
@@ -145,6 +187,12 @@
 	   (ask thing 'change-possessor self)
 	   'taken)))
 
+  (method (take-all)
+	  (for-each
+	   (lambda (thing)
+		   (if (eq? (ask thing 'possessor) 'no-one) (ask self 'take thing)))
+	   (ask place 'things)))
+
   (method (lose thing)
     (set! possessions (delete thing possessions))
     (ask thing 'change-possessor 'no-one)
@@ -171,15 +219,31 @@
 	     (ask new-place 'enter self))))) )
 
 (define-class (thing name)
+  (parent (basic-object))
+
   (instance-vars
    (possessor 'no-one))
   (method (type) 'thing)
+  (method (thing?) #t)
   (method (change-possessor new-possessor)
           (set! possessor new-possessor)))
 
 (define-class (ticket number)
   (parent (thing 'ticket)))
 
+(define-class (laptop name)
+  (parent (thing name))
+  (method (type) 'laptop)
+  (method (connect password)
+          (let ((possessor (ask self 'possessor)))
+            (if (not (person? possessor))
+              (error "The laptop should be picked up by someone before connect"))
+            (ask (ask possessor 'place) 'connect self password)))
+  (method (surf url)
+          (let ((possessor (ask self 'possessor)))
+            (if (not (person? possessor))
+              (error "The laptop should be picked up by someone before surf"))
+            (ask (ask possessor 'place) 'surf self url))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Implementation of thieves for part two
@@ -265,13 +329,21 @@
 	((eq? thing (car stuff)) (cdr stuff))
 	(else (cons (car stuff) (delete thing (cdr stuff)))) ))
 
+(define (place? obj)
+  (and (procedure? obj)
+       (ask obj 'place?)))
+
 (define (person? obj)
   (and (procedure? obj)
-       (member? (ask obj 'type) '(person police thief))))
+       (ask obj 'person?)))
 
 (define (thing? obj)
   (and (procedure? obj)
-       (eq? (ask obj 'type) 'thing)))
+       (ask obj 'thing?)))
+
+(define (laptop? thing)
+  (and (procedure? thing)
+       (eq? (ask thing 'type) 'laptop)))
 
 (define (name obj) (ask obj 'name))
 

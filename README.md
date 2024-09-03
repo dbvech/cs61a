@@ -118,7 +118,7 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 21: assignment and state](https://archive.org/details/ucberkeley_webcast_crlcqL7lKME)
   - [x] [Lecture 22: environments](https://archive.org/details/ucberkeley_webcast_uxvRoOV9nOk)
   - [x] [Lecture 23: environments](https://archive.org/details/ucberkeley_webcast_jmDguUbxOns)
-- [ ] Project 3 part 1
+- [x] Project 3 part 1 ([solution](projects/project-3))
 
 ---
 
