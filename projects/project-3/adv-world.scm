@@ -48,8 +48,13 @@
 (define hacker (instantiate person 'hacker 61A-lab))
 (define nasty (instantiate thief 'nasty sproul-plaza))
 
-(define (sproul-hall-exit)
-   (error "You can check out any time you'd like, but you can never leave"))
+(define sproul-hall-exit
+  (let ((count 0))
+    (lambda ()
+            (set! count (+ count 1))
+            (if (> count 3)
+	      (print "Alright, you can go now!")
+              (error "You can check out any time you'd like, but you can never leave")))))
 
 (define (bh-office-exit)
   (print "What's your favorite programming language?")

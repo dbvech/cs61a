@@ -22,11 +22,13 @@
 	(error "Thing already in this place" (list name new-thing)))
     (set! things (cons new-thing things))
     'appeared)
+  (method (may-enter? person) #t)
   (method (enter new-person)
     (if (memq new-person people)
 	(error "Person already in this place" (list name new-person)))
     (set! people (cons new-person people))
     (for-each (lambda (proc) (proc)) entry-procs)
+    (for-each (lambda (person) (ask person 'notice new-person)) (cdr people))
     'appeared)
   (method (gone thing)
     (if (not (memq thing things))
@@ -59,6 +61,55 @@
     (set! exit-procs '())
     (set! entry-procs '())
     'cleared) )
+
+(define-class (locked-place name)
+  (parent (place name))
+  (instance-vars 
+    (locked #t))
+  (method (may-enter? person) (not locked))
+  (method (unlock) 
+    (set! locked #f)
+    (display name)
+    (display " is unlocked!\n")))
+
+(define-class (garage name)
+  (parent (place name))
+
+  (class-vars (ticket-number 0))
+  (instance-vars (records (make-table)))
+
+  (method (next-ticket-number)
+          (set! ticket-number (+ ticket-number 1))
+          ticket-number)
+
+  (method (park the-car)
+          (let ((possessor (ask the-car 'possessor)))
+            (cond
+              ((symbol? possessor) (error "The car doesn't belong to anybody"))
+              ((not (eq? self (ask possessor 'place))) (error "The car is not in the garage"))
+              (else
+               (let ((the-ticket (instantiate ticket (ask self 'next-ticket-number))))
+                 (insert! (ask the-ticket 'number) the-car records)
+                 (ask self 'appear the-ticket)
+                 (ask possessor 'lose the-car)
+                 (ask possessor 'take the-ticket)
+                 (display (ask the-car 'name))
+                 (display " is parked! Ticket number is ")
+                 (display (ask the-ticket 'number))
+                 (newline))))))
+
+  (method (unpark the-ticket)
+          (if (not (eq? (ask the-ticket 'name) 'ticket))
+            (error "The thing is not a ticket")
+            (let ((the-car (lookup (ask the-ticket 'number) records))
+                  (owner (ask the-ticket 'possessor)))
+              (if (not the-car) (error "Car not found: invalid ticket"))
+              (ask owner 'lose the-ticket)
+              (ask owner 'take the-car)
+              (insert! (ask the-ticket 'number) #f records)
+              (display (ask the-car 'name))
+              (display " is unparked!")
+              (newline)))))
 
 (define-class (person name place)
   (instance-vars
@@ -106,6 +157,8 @@
     (let ((new-place (ask place 'look-in direction)))
       (cond ((null? new-place)
 	     (error "Can't go" direction))
+	    ((not (ask new-place 'may-enter? self)) 
+	     (error "The place is locked:" (ask new-place 'name)))
 	    (else
 	     (ask place 'exit self)
 	     (announce-move name place new-place)
@@ -117,29 +170,15 @@
 	     (set! place new-place)
 	     (ask new-place 'enter self))))) )
 
-(define thing
-  (let ()
-    (lambda (class-message)
-      (cond
-       ((eq? class-message 'instantiate)
-	(lambda (name)
-	  (let ((self '()) (possessor 'no-one))
-	    (define (dispatch message)
-	      (cond
-	       ((eq? message 'initialize)
-		(lambda (value-for-self)
-		  (set! self value-for-self)))
-	       ((eq? message 'send-usual-to-parent)
-		(error "Can't use USUAL without a parent." 'thing))
-	       ((eq? message 'name) (lambda () name))
-	       ((eq? message 'possessor) (lambda () possessor))
-	       ((eq? message 'type) (lambda () 'thing))
-	       ((eq? message 'change-possessor)
-		(lambda (new-possessor)
-		  (set! possessor new-possessor)))
-	       (else (no-method 'thing))))
-	    dispatch)))
-       (else (error "Bad message to class" class-message))))))
+(define-class (thing name)
+  (instance-vars
+   (possessor 'no-one))
+  (method (type) 'thing)
+  (method (change-possessor new-possessor)
+          (set! possessor new-possessor)))
+
+(define-class (ticket number)
+  (parent (thing 'ticket)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -233,3 +272,19 @@
 (define (thing? obj)
   (and (procedure? obj)
        (eq? (ask obj 'type) 'thing)))
+
+(define (name obj) (ask obj 'name))
+
+(define (inventory obj)
+  (if (person? obj)
+    (map name (ask obj 'possessions))
+    (map name (ask obj 'things))))
+
+(define (whereis person)
+  (name (ask person 'place)))
+
+(define (owner thing)
+  (let ((maybe-person (ask thing 'possessor)))
+    (if (symbol? maybe-person)
+      maybe-person
+      (name maybe-person))))
