@@ -207,16 +207,24 @@
 	     (error "Can't go" direction))
 	    ((not (ask new-place 'may-enter? self)) 
 	     (error "The place is locked:" (ask new-place 'name)))
-	    (else
-	     (ask place 'exit self)
-	     (announce-move name place new-place)
-	     (for-each
-	      (lambda (p)
-		(ask place 'gone p)
-		(ask new-place 'appear p))
-	      possessions)
-	     (set! place new-place)
-	     (ask new-place 'enter self))))) )
+	    (else (ask self 'go-directly-to new-place))))) 
+  (method (go-directly-to new-place)
+    (ask place 'exit self)
+    (announce-move name place new-place)
+    (for-each
+     (lambda (p)
+       (ask place 'gone p)
+       (ask new-place 'appear p))
+     possessions)
+    (set! place new-place)
+    (ask new-place 'enter self)))
+
+(define-class (police name place)
+  (parent (person name place))
+  (method (catch the-thief jail)
+          (if (not (thief? the-thief))
+            (error ("Not a thief!"))
+            (ask the-thief 'go-directly-to jail))))
 
 (define-class (thing name)
   (parent (basic-object))
@@ -261,7 +269,9 @@
 
   (method (notice person)
     (if (eq? behavior 'run)
-	(ask self 'go (pick-random (ask (usual 'place) 'exits)))
+	(let ((exits (ask (usual 'place) 'exits))) 
+	  (if (not (null? exits))
+	    (ask self 'go (pick-random exits))))
 	(let ((food-things
 	       (filter (lambda (thing)
 			 (and (edible? thing)
@@ -341,9 +351,13 @@
   (and (procedure? obj)
        (ask obj 'thing?)))
 
-(define (laptop? thing)
-  (and (procedure? thing)
-       (eq? (ask thing 'type) 'laptop)))
+(define (laptop? obj)
+  (and (thing? obj)
+       (eq? (ask obj 'type) 'laptop)))
+
+(define (thief? obj)
+  (and (person? obj)
+       (eq? (ask obj 'type) 'thief)))
 
 (define (name obj) (ask obj 'name))
 

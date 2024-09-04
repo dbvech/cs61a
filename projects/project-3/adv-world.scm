@@ -15,6 +15,7 @@
 (define Noahs (instantiate place 'Noahs))
 (define Intermezzo (instantiate place 'Intermezzo))
 (define s-h (instantiate place 'sproul-hall))
+(define jail (instantiate place 'jail))
 
 
 (can-go Soda 'up art-gallery)
