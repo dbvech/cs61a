@@ -160,6 +160,17 @@
    (ask self 'put 'strength 50))
   (method (type) 'person)
   (method (person?) #t)
+  (method (eat)
+    (for-each (lambda (food)
+           (set! possessions (delete food possessions))
+           (ask place 'gone food)
+           (ask self 'put 'strength (+ (ask self 'strength) 
+                                       (ask food 'calories)))
+           (display (ask food 'name))
+           (display ": eaten by ")
+           (display (ask self 'name))
+           (newline))
+         (filter edible? possessions)))
   (method (look-around)
     (map (lambda (obj) (ask obj 'name))
 	 (filter (lambda (thing) (not (eq? thing self)))
@@ -253,13 +264,31 @@
               (error "The laptop should be picked up by someone before surf"))
             (ask (ask possessor 'place) 'surf self url))))
 
+(define-class (food calories)
+  (parent (thing '*food*))
+  (initialize
+   (ask self 'put 'edible? #t)))
+
+(define-class (bagel)
+  (parent (food 250))
+  (class-vars
+   (name 'bagel)))
+
+(define-class (sushi)
+  (parent (food 205))
+  (class-vars
+   (name 'sushi)))
+
+(define-class (coffee)
+  (parent (food 100))
+  (class-vars
+   (name 'coffee)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Implementation of thieves for part two
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(define *foods* '(pizza potstickers coffee))
-
 (define (edible? thing)
-  (member? (ask thing 'name) *foods*))
+  (ask thing 'edible?))
 
 (define-class (thief name initial-place)
   (parent (person name initial-place))

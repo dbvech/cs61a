@@ -82,8 +82,8 @@
 
 ;; Some things.
 
-(define bagel (instantiate thing 'bagel))
-(ask Noahs 'appear bagel)
+(define the-bagel (instantiate bagel))
+(ask Noahs 'appear the-bagel)
 
-(define coffee (instantiate thing 'coffee))
-(ask Intermezzo 'appear coffee)
+(define the-coffee (instantiate coffee))
+(ask Intermezzo 'appear the-coffee)
