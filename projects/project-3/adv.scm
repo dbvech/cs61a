@@ -219,22 +219,31 @@
 	   (error "Thing taken not at this place"
 		  (list (ask place 'name) thing)))
 	  ((memq thing possessions) (error "You already have it!"))
-	  (else
+          ((eq? 'no-one (ask thing 'possessor))
 	   (announce-take name thing)
 	   (set! possessions (cons thing possessions))
-	       
-	   ;; If somebody already has this object...
-	   (for-each
-	    (lambda (pers)
-	      (if (and (not (eq? pers self)) ; ignore myself
-		       (memq thing (ask pers 'possessions)))
-		  (begin
-		   (ask pers 'lose thing)
-		   (have-fit pers))))
-	    (ask place 'people))
-	       
-	   (ask thing 'change-possessor self)
-	   'taken)))
+           (ask thing 'change-possessor self)
+	   'taken)
+  	  (else 
+           (let ((thing (ask thing 'may-take? self)))
+             (if (not thing)
+               (error (string-append (symbol->string name) 
+                                     " cannot take the thing")))
+             (announce-take name thing)
+             (set! possessions (cons thing possessions))
+ 	     
+             ;; If somebody already has this object...
+             (for-each
+              (lambda (pers)
+                (if (and (not (eq? pers self)) ; ignore myself
+                         (memq thing (ask pers 'possessions)))
+                    (begin
+                     (ask pers 'lose thing)
+                     (have-fit pers))))
+              (ask place 'people))
+                 
+             (ask thing 'change-possessor self)
+             'taken))))
 
   (method (take-all)
 	  (for-each
@@ -275,6 +284,12 @@
    (possessor 'no-one))
   (method (type) 'thing)
   (method (thing?) #t)
+  (method (may-take? receiver)
+         (if (eq? possessor 'no-one)
+           self
+           (and (> (ask receiver 'strength)
+                   (ask possessor 'strength))
+                self)))
   (method (change-possessor new-possessor)
           (set! possessor new-possessor)))
 
