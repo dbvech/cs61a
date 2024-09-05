@@ -160,7 +160,8 @@
             ((not (equal? food-name (ask food-class 'name)))
              (print "Sorry, we don't have such food")
              #f)
-            ((not (ask buyer 'pay-money food-price))
+            ((not (or (police? buyer) 
+                      (ask buyer 'pay-money food-price)))
              (print "Sorry, you don't have enough money")
              #f)
             (else (let ((the-food (instantiate food-class)))
@@ -453,6 +454,10 @@
 (define (thief? obj)
   (and (person? obj)
        (eq? (ask obj 'type) 'thief)))
+
+(define (police? obj)
+  (and (person? obj)
+       (eq? (ask obj 'type) 'police)))
 
 (define (name obj) (ask obj 'name))
 
