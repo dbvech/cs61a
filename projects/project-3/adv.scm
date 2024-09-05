@@ -268,13 +268,6 @@
     (set! place new-place)
     (ask new-place 'enter self)))
 
-(define-class (police name place)
-  (parent (person name place))
-  (method (catch the-thief jail)
-          (if (not (thief? the-thief))
-            (error ("Not a thief!"))
-            (ask the-thief 'go-directly-to jail))))
-
 (define-class (thing name)
   (parent (basic-object))
 
@@ -330,6 +323,7 @@
 
 (define-class (thief name initial-place)
   (parent (person name initial-place))
+  (initialize (ask self 'put 'strength 100))
   (instance-vars
    (behavior 'steal))
   (method (type) 'thief)
@@ -349,6 +343,21 @@
 	       (ask self 'take (car food-things))
 	       (set! behavior 'run)
 	       (ask self 'notice person)) )))) )
+
+(define-class (police name initial-place)
+  (parent (person name initial-place))
+  (initialize (ask self 'put 'strength 300))
+
+  (method (type) 'police)
+
+  (method (notice person)
+          (if (thief? person)
+            (begin
+             (print "Crime Does Not Pay,")
+             (for-each (lambda (the-thing) (ask self 'take the-thing))
+                       (ask person 'possessions))
+             (ask person 'go-directly-to jail)))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Utility procedures
