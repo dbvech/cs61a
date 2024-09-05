@@ -149,6 +149,24 @@
              (display (ask thing 'name))
              (newline)))))
 
+(define-class (restaurant name food-class food-price)
+  (parent (place name))
+
+  (method (type) 'restaurant)
+  (method (menu)
+          (list (cons (ask food-class 'name) food-price)))
+  (method (sell buyer food-name)
+          (cond
+            ((not (equal? food-name (ask food-class 'name)))
+             (print "Sorry, we don't have such food")
+             #f)
+            ((not (ask buyer 'pay-money food-price))
+             (print "Sorry, you don't have enough money")
+             #f)
+            (else (let ((the-food (instantiate food-class)))
+                    (ask self 'appear the-food)
+                    the-food)))))
+
 (define-class (person name place)
   (parent (basic-object))
 
@@ -157,9 +175,19 @@
    (saying ""))
   (initialize
    (ask place 'enter self)
-   (ask self 'put 'strength 50))
+   (ask self 'put 'strength 50)
+   (ask self 'put 'money 100))
   (method (type) 'person)
   (method (person?) #t)
+  (method (get-money amount)
+          (ask self 'put 'money (+ (ask self 'money) amount)))
+  (method (pay-money amount)
+          (let ((balance (ask self 'money)))
+            (if (> amount balance) 
+              #f
+              (begin 
+                (ask self 'put 'money (- balance amount))
+                #t))))
   (method (eat)
     (for-each (lambda (food)
            (set! possessions (delete food possessions))
@@ -379,6 +407,10 @@
 (define (thing? obj)
   (and (procedure? obj)
        (ask obj 'thing?)))
+
+(define (restaurant? obj)
+  (and (place? obj)
+       (eq? (ask obj 'type) 'restaurant)))
 
 (define (laptop? obj)
   (and (thing? obj)
