@@ -133,7 +133,7 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 24: mutable data](https://archive.org/details/ucberkeley_webcast_OCocDioUZOo)
   - [x] [Lecture 25: mutable data](https://archive.org/details/ucberkeley_webcast_YgUZP1YbHsM)
   - [x] [Lecture 26: vectors](https://archive.org/details/ucberkeley_webcast_vV7gargdGxU)
-- [ ] Project 3 part 2
+- [x] Project 3 part 2
 
 > [!NOTE]
 > Lecture 27-29 is not given due to spring break]
@@ -144,13 +144,13 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: client/server, concurrency**
 
-- [ ] Reading ([Section 3.4](https://sarabander.github.io/sicp/html/3_002e4.xhtml#g_t3_002e4))
-- [ ] Homework
-- [ ] Labs
-- [ ] Watch
-  - [ ] [Lecture 30: client-server programming](https://archive.org/details/ucberkeley_webcast_Lr4zVJPpMrM)
-  - [ ] [Lecture 31: concurrency](https://archive.org/details/ucberkeley_webcast_tfTD0B8dX7I)
-  - [ ] [Lecture 32: concurrency](https://archive.org/details/ucberkeley_webcast_a_qhlzmXqAo)
+- [x] Reading ([Section 3.4](https://sarabander.github.io/sicp/html/3_002e4.xhtml#g_t3_002e4))
+- [ ] Homework ([solution](week-9/hw))
+- [x] Labs
+- [x] Watch
+  - [x] [Lecture 30: client-server programming](https://archive.org/details/ucberkeley_webcast_Lr4zVJPpMrM)
+  - [x] [Lecture 31: concurrency](https://archive.org/details/ucberkeley_webcast_tfTD0B8dX7I)
+  - [x] [Lecture 32: concurrency](https://archive.org/details/ucberkeley_webcast_a_qhlzmXqAo)
 
 ---
 
