@@ -145,7 +145,7 @@ This repository documents my progress in completing the CS 61A Programming cours
 **Topic: client/server, concurrency**
 
 - [x] Reading ([Section 3.4](https://sarabander.github.io/sicp/html/3_002e4.xhtml#g_t3_002e4))
-- [ ] Homework ([solution](week-9/hw))
+- [x] Homework ([solution](week-10/hw))
 - [x] Labs
 - [x] Watch
   - [x] [Lecture 30: client-server programming](https://archive.org/details/ucberkeley_webcast_Lr4zVJPpMrM)
