@@ -159,12 +159,12 @@ This repository documents my progress in completing the CS 61A Programming cours
 **Topic: Streams**
 
 - [x] Reading ([3.5.1–3, 3.5.5](https://sarabander.github.io/sicp/html/3_002e5.xhtml#g_t3_002e5), [therac-25.pdf](cs61a/docs/course_reader_vol_2/an_investigation_of_therac-25_accidents.pdf))
-- [ ] Homework
+- [x] Homework ([solution](week-11/hw))
 - [x] Labs ([solution](week-11/lab))
-- [ ] Watch
+- [x] Watch
   - [x] [Lecture 33: streams](https://archive.org/details/ucberkeley_webcast_LLl89UwSflo)
   - [x] [Lecture 34: streams](https://archive.org/details/ucberkeley_webcast_mtl0z0HgRTM)
-  - [ ] [Lecture 35: Therac-25](https://archive.org/details/ucberkeley_webcast_nxX-aAvZbmM)
+  - [x] [Lecture 35: Therac-25](https://archive.org/details/ucberkeley_webcast_nxX-aAvZbmM)
 
 ---
 
