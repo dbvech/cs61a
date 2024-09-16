@@ -165,6 +165,7 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 33: streams](https://archive.org/details/ucberkeley_webcast_LLl89UwSflo)
   - [x] [Lecture 34: streams](https://archive.org/details/ucberkeley_webcast_mtl0z0HgRTM)
   - [x] [Lecture 35: Therac-25](https://archive.org/details/ucberkeley_webcast_nxX-aAvZbmM)
+- [ ] Midterm 3
 
 ---
 
@@ -172,11 +173,26 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Metacircular evaluator**
 
+- [ ] Reading ([4.1.1-6](https://sarabander.github.io/sicp/html/4_002e1.xhtml#g_t4_002e1), [mapreduce](cs61a/docs/course_reader_vol_2/mapreduce_simplified_data_processing_on_large_clusters.pdf))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 36: metacircular evaluator](https://archive.org/details/ucberkeley_webcast_E8ZyYL1qWWY)
+  - [ ] [Lecture 37: metacircular evaluator](https://archive.org/details/ucberkeley_webcast_0SbpbHiyyEU)
+  - [ ] [Lecture 38: mapreduce](https://archive.org/details/ucberkeley_webcast_OVbHFr6SG_8)
+  - [ ] [Lecture 39: mapreduce](https://archive.org/details/ucberkeley_webcast_tlABAGE-Tvc)
+
 ---
 
 ### Week 13
 
 **Topic: Analyzing evaluator, MapReduce**
+
+- [ ] Reading ([analyzing evaluator](./cs61a/lib/analyze.scm)))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 40: analyzing evaluator](https://archive.org/details/ucberkeley_webcast_S9VoxtdsRyA)
 
 ---
 
@@ -184,16 +200,35 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: lazy evaluator, nondeterministic evaluator**
 
+- [ ] Reading ([4.2](https://sarabander.github.io/sicp/html/4_002e2.xhtml#g_t4_002e2), [4.3](https://sarabander.github.io/sicp/html/4_002e3.xhtml#g_t4_002e3))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 41: lazy evaluator](https://archive.org/details/ucberkeley_webcast_WJsgTZsFE3M)
+- [ ] Project 4a
+
 ---
 
 ### Week 15
 
 **Topic: Logic programming**
 
+- [ ] Reading ([4.4.1-3](https://sarabander.github.io/sicp/html/4_002e4.xhtml#g_t4_002e4))
+- [ ] Homework
+- [ ] Labs
+- [ ] Watch
+  - [ ] [Lecture 42: logic programming](https://archive.org/details/ucberkeley_webcast_JIMS_mspmug)
+  - [ ] [Lecture 43: logic programming](https://archive.org/details/ucberkeley_webcast_i5XtLVwTcZY)
+- [ ] Project 4b
+
 ---
 
 ### Week 16
 
 **Topic: Review**
+
+- [ ] Watch
+  - [ ] [Lecture 44: Review](https://archive.org/details/ucberkeley_webcast_zWiQru4tn-o)
+- [ ] Final exam
 
 ---
