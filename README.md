@@ -173,14 +173,14 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Metacircular evaluator**
 
-- [ ] Reading ([4.1.1-6](https://sarabander.github.io/sicp/html/4_002e1.xhtml#g_t4_002e1), [mapreduce](cs61a/docs/course_reader_vol_2/mapreduce_simplified_data_processing_on_large_clusters.pdf))
-- [ ] Homework
+- [x] Reading ([4.1.1-6](https://sarabander.github.io/sicp/html/4_002e1.xhtml#g_t4_002e1), [mapreduce](cs61a/docs/course_reader_vol_2/mapreduce_simplified_data_processing_on_large_clusters.pdf))
+- [x] Homework ([solution](week-12/hw))
 - [x] Labs ([solution](week-12/lab))
-- [ ] Watch
+- [x] Watch
   - [x] [Lecture 36: metacircular evaluator](https://archive.org/details/ucberkeley_webcast_E8ZyYL1qWWY)
-  - [ ] [Lecture 37: metacircular evaluator](https://archive.org/details/ucberkeley_webcast_0SbpbHiyyEU)
-  - [ ] [Lecture 38: mapreduce](https://archive.org/details/ucberkeley_webcast_OVbHFr6SG_8)
-  - [ ] [Lecture 39: mapreduce](https://archive.org/details/ucberkeley_webcast_tlABAGE-Tvc)
+  - [x] [Lecture 37: metacircular evaluator](https://archive.org/details/ucberkeley_webcast_0SbpbHiyyEU)
+  - [x] [Lecture 38: mapreduce](https://archive.org/details/ucberkeley_webcast_OVbHFr6SG_8)
+  - [x] [Lecture 39: mapreduce](https://archive.org/details/ucberkeley_webcast_tlABAGE-Tvc)
 
 ---
 
