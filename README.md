@@ -103,7 +103,7 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 18: object-oriented programming](https://archive.org/details/ucberkeley_webcast_jq1v8YUftxE)
   - [x] [Lecture 19: object oriented programming](https://archive.org/details/ucberkeley_webcast_S9mGKy3Dzqw)
   - [x] [Lecture 20: object oriented programming](https://archive.org/details/ucberkeley_webcast_AYoW8-L2dTQ)
-- [x] Midterm 2
+- [x] Midterm 2 ([answers](exams/midterm-2))
 
 ---
 
@@ -165,7 +165,7 @@ This repository documents my progress in completing the CS 61A Programming cours
   - [x] [Lecture 33: streams](https://archive.org/details/ucberkeley_webcast_LLl89UwSflo)
   - [x] [Lecture 34: streams](https://archive.org/details/ucberkeley_webcast_mtl0z0HgRTM)
   - [x] [Lecture 35: Therac-25](https://archive.org/details/ucberkeley_webcast_nxX-aAvZbmM)
-- [ ] Midterm 3
+- [x] Midterm 3 ([answers](exams/midterm-3))
 
 ---
 
