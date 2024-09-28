@@ -188,11 +188,11 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Analyzing evaluator, MapReduce**
 
-- [ ] Reading ([analyzing evaluator](./cs61a/lib/analyze.scm)))
+- [x] Reading ([analyzing evaluator](./cs61a/lib/analyze.scm)))
 - [ ] Homework
-- [ ] Labs
-- [ ] Watch
-  - [ ] [Lecture 40: analyzing evaluator](https://archive.org/details/ucberkeley_webcast_S9VoxtdsRyA)
+- [x] Labs ([solution](week-13/lab))
+- [x] Watch
+  - [x] [Lecture 40: analyzing evaluator](https://archive.org/details/ucberkeley_webcast_WJsgTZsFE3M)
 
 ---
 
@@ -204,7 +204,7 @@ This repository documents my progress in completing the CS 61A Programming cours
 - [ ] Homework
 - [ ] Labs
 - [ ] Watch
-  - [ ] [Lecture 41: lazy evaluator](https://archive.org/details/ucberkeley_webcast_WJsgTZsFE3M)
+  - [ ] [Lecture 41: lazy evaluator](https://archive.org/details/ucberkeley_webcast_S9VoxtdsRyA)
 - [ ] Project 4a
 
 ---
