@@ -189,7 +189,7 @@ This repository documents my progress in completing the CS 61A Programming cours
 **Topic: Analyzing evaluator, MapReduce**
 
 - [x] Reading ([analyzing evaluator](./cs61a/lib/analyze.scm)))
-- [ ] Homework
+- [x] Homework ([solution](week-13/hw))
 - [x] Labs ([solution](week-13/lab))
 - [x] Watch
   - [x] [Lecture 40: analyzing evaluator](https://archive.org/details/ucberkeley_webcast_WJsgTZsFE3M)
