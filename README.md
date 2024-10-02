@@ -200,11 +200,11 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: lazy evaluator, nondeterministic evaluator**
 
-- [ ] Reading ([4.2](https://sarabander.github.io/sicp/html/4_002e2.xhtml#g_t4_002e2), [4.3](https://sarabander.github.io/sicp/html/4_002e3.xhtml#g_t4_002e3))
-- [ ] Homework
+- [x] Reading ([4.2](https://sarabander.github.io/sicp/html/4_002e2.xhtml#g_t4_002e2), [4.3](https://sarabander.github.io/sicp/html/4_002e3.xhtml#g_t4_002e3))
+- [x] Homework ([solution](week-14/hw))
 - [ ] Labs
-- [ ] Watch
-  - [ ] [Lecture 41: lazy evaluator](https://archive.org/details/ucberkeley_webcast_S9VoxtdsRyA)
+- [x] Watch
+  - [x] [Lecture 41: lazy evaluator](https://archive.org/details/ucberkeley_webcast_S9VoxtdsRyA)
 - [ ] Project 4a
 
 ---

@@ -20,7 +20,7 @@
 ;;**implementation-dependent loading of evaluator file
 ;;Note: It is loaded first so that the section 4.2 definition
 ;; of eval overrides the definition from 4.1.1
-(load "mceval.scm")
+(load "../../cs61a/lib/mceval.scm")
 
 
 
@@ -28,6 +28,9 @@
 
 (define (amb? exp) (tagged-list? exp 'amb))
 (define (amb-choices exp) (cdr exp))
+
+(define (ramb? exp) (tagged-list? exp 'ramb))
+(define (ramb-choices exp) (cdr exp))
 
 ;; analyze from 4.1.6, with clause from 4.3.3 added
 ;; and also support for Let
@@ -44,6 +47,7 @@
         ((cond? exp) (analyze (cond->if exp)))
         ((let? exp) (analyze (let->combination exp))) ;**
         ((amb? exp) (analyze-amb exp))                ;**
+        ((ramb? exp) (analyze-ramb exp))                ;**
         ((application? exp) (analyze-application exp))
         (else
          (error "Unknown expression type -- ANALYZE" exp))))
@@ -201,6 +205,28 @@
                              (try-next (cdr choices))))))
       (try-next cprocs))))
 
+;;;ramb expressions
+(define (analyze-ramb exp)
+  (define (remove-from-list ref choices)
+    (define (loop i choices-left)
+      (cond
+        ((null? choices-left) '())
+        ((= i ref) (cdr choices-left))
+        (else (cons (car choices-left) 
+                    (loop (+ i 1) (cdr choices-left))))))
+    (loop 0 choices))
+  (let ((cprocs (map analyze (amb-choices exp))))
+    (lambda (env succeed fail)
+      (define (try-next choices)
+        (if (null? choices)
+            (fail)
+            (let ((rand (random (length choices))))
+              ((list-ref choices rand) 
+               env
+               succeed
+               (lambda ()
+                (try-next (remove-from-list rand choices)))))))
+      (try-next cprocs))))
 ;;;Driver loop
 
 (define input-prompt ";;; Amb-Eval input:")

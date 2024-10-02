@@ -20,7 +20,7 @@
 ;;**implementation-dependent loading of evaluator file
 ;;Note: It is loaded first so that the section 4.2 definition
 ;; of eval overrides the definition from 4.1.1
-(load "mceval.scm")
+(load "../../cs61a/lib/mceval.scm")
 
 
 
@@ -39,6 +39,7 @@
         ((assignment? exp) (analyze-assignment exp))
         ((definition? exp) (analyze-definition exp))
         ((if? exp) (analyze-if exp))
+        ((if-fail? exp) (analyze-if-fail exp))
         ((lambda? exp) (analyze-lambda exp))
         ((begin? exp) (analyze-sequence (begin-actions exp)))
         ((cond? exp) (analyze (cond->if exp)))
@@ -109,6 +110,19 @@
     (if (null? procs)
         (error "Empty sequence -- ANALYZE"))
     (loop (car procs) (cdr procs))))
+
+;;;Support for analyze-if-fail
+(define (analyze-if-fail exp)
+  (let ((uproc (analyze (if-fail-usual exp)))
+        (fproc (analyze (if-fail-alternative exp))))
+    (lambda (env succeed fail)
+            (uproc env
+                   succeed
+                   (lambda () (fproc env succeed fail))))))
+
+(define (if-fail? exp) (tagged-list? exp 'if-fail))
+(define (if-fail-usual exp) (cadr exp))
+(define (if-fail-alternative exp) (caddr exp))
 
 ;;;Definitions and assignments
 
@@ -285,6 +299,7 @@
         (list 'eq? eq?)
 	(list 'equal? equal?)
 	(list 'pair? pair?)
+	(list 'even? even?)
 ;;      more primitives
         ))
 
