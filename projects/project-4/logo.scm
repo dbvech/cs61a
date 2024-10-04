@@ -3,9 +3,17 @@
 
 ;;; Problem A1   make-line-obj
 
-(define (make-line-obj text)   
-  (error "make-line-obj not written yet!")) 
+(define-class (line-object lst)
+  (method (empty?) (empty? lst))
+  (method (next)
+          (let ((next (car lst)))
+            (set! lst (cdr lst))
+            next))
+  (method (put-back token)
+          (set! lst (cons token lst))))
 
+(define (make-line-obj text)   
+  (instantiate line-object text)) 
 
 ;;; Problem A2   logo-type
 
