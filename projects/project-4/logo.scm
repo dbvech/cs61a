@@ -73,7 +73,7 @@
 ;;; Problem B2   logo-pred
 
 (define (logo-pred pred)   
-  pred)      ;; This isn't written yet but we fake it for now.
+  (lambda args (if (apply pred args) 'TRUE 'FALSE)))
 
 
 ;;; Here is an example of a Scheme predicate that will be turned into  
