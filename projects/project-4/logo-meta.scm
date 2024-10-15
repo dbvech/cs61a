@@ -80,17 +80,17 @@
 (add-prim 'last 1 last)
 (add-prim 'butlast 1 bl)
 (add-prim 'bl 1 bl)
-(add-prim 'word 2 word)
-(add-prim 'sentence 2 se)
-(add-prim 'se 2 se)
-(add-prim 'list 2 list)
+(add-prim 'word -2 word)
+(add-prim 'sentence -2 se)
+(add-prim 'se -2 se)
+(add-prim 'list -2 list)
 (add-prim 'fput 2 cons)
 
-(add-prim 'sum 2 (make-logo-arith +))
+(add-prim 'sum -2 (make-logo-arith +))
 (add-prim 'difference 2 (make-logo-arith -))
 (add-prim '=unary-minus= 1 (make-logo-arith -))
 (add-prim '- 1 (make-logo-arith -))
-(add-prim 'product 2 (make-logo-arith *))
+(add-prim 'product -2 (make-logo-arith *))
 (add-prim 'quotient 2 (make-logo-arith /))
 (add-prim 'remainder 2 (make-logo-arith remainder))
 
@@ -170,6 +170,15 @@
 
 (define (eval-prefix line-obj env)
   (define (eval-helper paren-flag)
+    (define (get-proc-args proc)
+      (let ((argc (arg-count proc)))
+	(cond
+	  ((list? argc)
+	   (cons env (collect-n-args (car argc) line-obj env)))
+	  ((< argc 0)
+	   (collect-n-args (if paren-flag argc (abs argc)) line-obj env))
+	  (else
+	    (collect-n-args (arg-count proc) line-obj env)))))
     (let ((token (ask line-obj 'next)))
       (cond ((self-evaluating? token) token)
             ((variable? token)
@@ -189,11 +198,7 @@
             (else
 	     (let ((proc (lookup-procedure token)))
 	       (if (not proc) (error "I don't know how to" token))
-	       (logo-apply proc
-			   (collect-n-args (arg-count proc)
-					   line-obj
-					   env)
-			   env))) )))
+	       (logo-apply proc (get-proc-args proc) env))) )))
   (eval-helper #f))
 
 (define (logo-apply procedure arguments env)
