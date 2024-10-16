@@ -69,8 +69,24 @@
 ;;; Problem B4    eval-definition
 
 (define (eval-definition line-obj)
-  (error "eval-definition not written yet!"))
-
+  (define (read-body body)
+    (prompt "-> ")
+    (let ((line (logo-read)))
+      (if (equal? (car line) "end")
+	body
+	(read-body (append body (list line))))))
+  (define (get-formals)
+    (if (ask line-obj 'empty?)
+      '()
+      (cons (bf (ask line-obj 'next)) (get-formals))))
+  (let ((name (ask line-obj 'next))
+	(formals (get-formals))
+	(body (read-body '())))
+    (set! the-procedures 
+      (cons 
+	(list name 'compound (length formals) (cons formals body))
+	the-procedures)))
+  '=no-value=)
 
 ;;; Problem 5    eval-sequence
 
