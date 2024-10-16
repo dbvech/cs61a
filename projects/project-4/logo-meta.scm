@@ -48,8 +48,23 @@
 		      (> . greaterp)))))
 
 (define (handle-infix value line-obj env)
-  value)   ;; This doesn't give an error message, so other stuff works.
-
+  (define (check-infix)
+    (let ((next-token (ask line-obj 'next)))
+      (if (member? next-token '(+ - * / = < >))
+	(de-infix next-token)
+	(begin
+	  (ask line-obj 'put-back next-token)
+	  #f))))
+  (if (ask line-obj 'empty?)
+    value
+    (let ((infix-proc (check-infix)))
+      (if (not infix-proc)
+	value
+	(let ((result 
+		(eval-prefix 
+		  (make-line-obj (list infix-proc value (ask line-obj 'next))) 
+		  env))) 
+	  (handle-infix result line-obj env))))))
 
 ;;; Problem B4    eval-definition
 
