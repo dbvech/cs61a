@@ -91,8 +91,16 @@
 ;;; Problem 5    eval-sequence
 
 (define (eval-sequence exps env)
-  (error "eval-seqence not written yet!"))
-
+  (if (empty? exps) 
+    '=no-value=
+    (let ((result (eval-line (make-line-obj (car exps)) env)))
+      (cond
+	((eq? result '=stop=) '=no-value)
+	((and (list? result) 
+	      (eq? (car result) '=output=)) 
+	 (cdr result))
+	((eq? result '=no-value=) (eval-sequence (cdr exps) env))
+	(else (error "You don't say what to do with " result))))))
 
 
 
