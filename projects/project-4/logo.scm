@@ -49,7 +49,9 @@
 ;;; Problem B3   variables   (logo-meta.scm is also affected)
 
 (define (make env var val) 
-  (error "make not written yet!") 
+  (if (null? (lookup-variable-binding var env))
+    (define-variable! var val the-global-environment)
+    (set-variable-value! var val env))
   '=no-value=) 
 
 

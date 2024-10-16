@@ -205,7 +205,7 @@ This repository documents my progress in completing the CS 61A Programming cours
 - [x] Labs ([solution](week-14/lab))
 - [x] Watch
   - [x] [Lecture 41: lazy evaluator](https://archive.org/details/ucberkeley_webcast_S9VoxtdsRyA)
-- [ ] Project 4a
+- [x] Project 4a ([solution](projects/project-4))
 
 ---
 

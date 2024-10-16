@@ -30,10 +30,10 @@
 ;;; data abstraction procedures
 
 (define (variable? exp)
-  #f)            ;; not written yet but we fake it for now
+  (equal? (first exp) ":"))
 
 (define (variable-name exp)
-  (error "variable-name not written yet!"))
+  (bf exp))
 
 
 ;;; Problem A4   handle-infix
@@ -304,20 +304,26 @@
           (error "Too many arguments supplied" vars vals)
           (error "Too few arguments supplied" vars vals))))
 
-(define (lookup-variable-value var env)
+(define (lookup-variable-binding var env)
   (define (env-loop env)
     (define (scan vars vals)
       (cond ((null? vars)
              (env-loop (enclosing-environment env)))
             ((eq? var (car vars))
-             (car vals))
+             (cons var (car vals)))
             (else (scan (cdr vars) (cdr vals)))))
     (if (eq? env the-empty-environment)
-        (error "Unbound variable" var)
+        '()
         (let ((frame (first-frame env)))
           (scan (frame-variables frame)
                 (frame-values frame)))))
   (env-loop env))
+
+(define (lookup-variable-value var env)
+  (let ((binding (lookup-variable-binding var env)))
+    (if binding 
+      (cdr binding) 
+      (error "Unbound variable" var))))
 
 (define (set-variable-value! var val env)
   (define (env-loop env)
