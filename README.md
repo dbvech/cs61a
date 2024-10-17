@@ -219,7 +219,7 @@ This repository documents my progress in completing the CS 61A Programming cours
 - [ ] Watch
   - [ ] [Lecture 42: logic programming](https://archive.org/details/ucberkeley_webcast_JIMS_mspmug)
   - [ ] [Lecture 43: logic programming](https://archive.org/details/ucberkeley_webcast_i5XtLVwTcZY)
-- [ ] Project 4b
+- [x] Project 4b ([solution](projects/project-4))
 
 ---
 

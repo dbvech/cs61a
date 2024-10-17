@@ -78,13 +78,24 @@
   (define (get-formals)
     (if (ask line-obj 'empty?)
       '()
-      (cons (bf (ask line-obj 'next)) (get-formals))))
+      (let ((next (ask line-obj 'next)))
+	(if (eq? next 'static)
+	  '()
+	  (cons (bf next) (get-formals))))))
+  (define (get-static-vars frame)
+    (if (ask line-obj 'empty?)
+      frame
+      (let ((var (bf (ask line-obj 'next)))
+	    (val (logo-eval line-obj the-global-environment)))
+	(add-binding-to-frame! var val frame)
+	(get-static-vars frame))))
   (let ((name (ask line-obj 'next))
 	(formals (get-formals))
+	(static-vars (get-static-vars (make-frame '() '())))
 	(body (read-body '())))
     (set! the-procedures 
       (cons 
-	(list name 'compound (length formals) (cons formals body) #f)
+	(list name 'compound (length formals) (cons formals body) #f static-vars)
 	the-procedures)))
   '=no-value=)
 
@@ -295,10 +306,11 @@
          (apply-primitive-procedure procedure arguments))
         ((compound-procedure? procedure)
          (eval-sequence (procedure-body procedure)
-                        (extend-environment
-                         (parameters procedure)
-                         arguments
-                         env)
+			(cons (static-frame procedure) 
+			      (extend-environment 
+				(parameters procedure) 
+				arguments 
+				env))
 			(debug-enabled? procedure)))
         (else
          (error "Unknown procedure type -- LOGO-APPLY" procedure))))
@@ -366,6 +378,9 @@
 (define (debug-enabled? proc) 
   (cadr (cdddr proc)))
 
+(define (static-frame proc) 
+  (caddr (cdddr proc)))
+
 (define (set-debug-flag! proc flag) 
   (set-car! (cdr (cdddr proc)) flag))
 
@@ -417,9 +432,9 @@
 
 (define (lookup-variable-value var env)
   (let ((binding (lookup-variable-binding var env)))
-    (if binding 
-      (cdr binding) 
-      (error "Unbound variable" var))))
+    (if (null? binding)
+      (error "Unbound variable" var)
+      (cdr binding))))
 
 (define (set-variable-value! var val env)
   (define (env-loop env)
