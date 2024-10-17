@@ -84,23 +84,28 @@
 	(body (read-body '())))
     (set! the-procedures 
       (cons 
-	(list name 'compound (length formals) (cons formals body))
+	(list name 'compound (length formals) (cons formals body) #f)
 	the-procedures)))
   '=no-value=)
 
 ;;; Problem 5    eval-sequence
 
-(define (eval-sequence exps env)
+(define (eval-sequence exps env step?)
   (if (empty? exps) 
     '=no-value=
-    (let ((result (eval-line (make-line-obj (car exps)) env)))
-      (cond
-	((eq? result '=stop=) '=no-value)
-	((and (list? result) 
-	      (eq? (car result) '=output=)) 
-	 (cdr result))
-	((eq? result '=no-value=) (eval-sequence (cdr exps) env))
-	(else (error "You don't say what to do with " result))))))
+    (begin
+      (if step? (begin 
+		  (display (car exps))
+		  (prompt ">>> ")
+		  (logo-read)))
+      (let ((result (eval-line (make-line-obj (car exps)) env)))
+	(cond
+	  ((eq? result '=stop=) '=no-value)
+	  ((and (list? result) 
+		(eq? (car result) '=output=)) 
+	   (cdr result))
+	  ((eq? result '=no-value=) (eval-sequence (cdr exps) env step?))
+	  (else (error "You don't say what to do with " result)))))))
 
 
 
@@ -155,6 +160,20 @@
 (add-prim 'op 1 (lambda (x) (cons '=output= x)))
 
 (add-prim 'load 1 meta-load)
+
+(define (set-debug-flag-wrapper flag)
+  (lambda (proc-name) 
+    (let ((proc (lookup-procedure proc-name)))
+      (if (not proc)
+	(error "Not defined procedure " proc-name)
+	(if (not (compound-procedure? proc))
+	  (error "Not compound procedure " proc-name)
+	  (begin 
+	    (set-debug-flag! proc flag)
+	    '=no-value=))))))
+
+(add-prim 'step 1 (set-debug-flag-wrapper #t))
+(add-prim 'unstep 1 (set-debug-flag-wrapper #f))
 
 (define the-global-environment '())
 (define the-procedures the-primitive-procedures)
@@ -248,7 +267,8 @@
                         (extend-environment
                          (parameters procedure)
                          arguments
-                         env)))
+                         env)
+			(debug-enabled? procedure)))
         (else
          (error "Unknown procedure type -- LOGO-APPLY" procedure))))
 
@@ -311,6 +331,12 @@
 
 (define (text proc)
   (cadddr proc))
+
+(define (debug-enabled? proc) 
+  (cadr (cdddr proc)))
+
+(define (set-debug-flag! proc flag) 
+  (set-car! (cdr (cdddr proc)) flag))
 
 (define (parameters proc) (car (text proc)))
 
