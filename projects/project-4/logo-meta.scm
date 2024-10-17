@@ -175,6 +175,37 @@
 (add-prim 'step 1 (set-debug-flag-wrapper #t))
 (add-prim 'unstep 1 (set-debug-flag-wrapper #f))
 
+(define (logo-test env t/f)
+  (cond
+    ((eq? t/f 'true) 
+     (define-variable! '*=test=* #t env)
+     '=no-value=)
+    ((eq? t/f 'false) 
+     (define-variable! '*=test=* #f env)
+     '=no-value=)
+    (else 
+      (error "The argument to TEST must be TRUE of FALSE"))))
+
+(define (logo-if-true env arg)
+  (let ((test-binding (lookup-variable-binding '*=test=* env)))
+    (cond
+      ((null? test-binding) (error "No TEST was used before"))
+      ((cdr test-binding) (eval-line (make-line-obj arg) env))
+      (else '=no-value=))))
+
+(define (logo-if-false env arg)
+  (let ((test-binding (lookup-variable-binding '*=test=* env)))
+    (cond
+      ((null? test-binding) (error "No TEST was used before"))
+      ((not (cdr test-binding)) (eval-line (make-line-obj arg) env))
+      (else '=no-value=))))
+
+(add-prim 'test '(1) logo-test)
+(add-prim 'iftrue '(1) logo-if-true)
+(add-prim 'ift'(1) logo-if-true)
+(add-prim 'iffalse '(1) logo-if-false)
+(add-prim 'iff'(1) logo-if-false)
+
 (define the-global-environment '())
 (define the-procedures the-primitive-procedures)
 
