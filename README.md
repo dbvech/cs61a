@@ -214,11 +214,11 @@ This repository documents my progress in completing the CS 61A Programming cours
 **Topic: Logic programming**
 
 - [x] Reading ([4.4.1-3](https://sarabander.github.io/sicp/html/4_002e4.xhtml#g_t4_002e4))
-- [ ] Homework
+- [x] Homework ([solution](week-15/hw))
 - [x] Labs ([solution](week-15/lab))
-- [ ] Watch
-  - [ ] [Lecture 42: logic programming](https://archive.org/details/ucberkeley_webcast_JIMS_mspmug)
-  - [ ] [Lecture 43: logic programming](https://archive.org/details/ucberkeley_webcast_i5XtLVwTcZY)
+- [x] Watch
+  - [x] [Lecture 42: logic programming](https://archive.org/details/ucberkeley_webcast_JIMS_mspmug)
+  - [x] [Lecture 43: logic programming](https://archive.org/details/ucberkeley_webcast_i5XtLVwTcZY)
 - [x] Project 4b ([solution](projects/project-4))
 
 ---
