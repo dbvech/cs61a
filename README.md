@@ -227,8 +227,6 @@ This repository documents my progress in completing the CS 61A Programming cours
 
 **Topic: Review**
 
-- [ ] Watch
-  - [ ] [Lecture 44: Review](https://archive.org/details/ucberkeley_webcast_zWiQru4tn-o)
-- [ ] Final exam
-
----
+- [x] Watch
+  - [x] [Lecture 44: Review](https://archive.org/details/ucberkeley_webcast_zWiQru4tn-o)
+- [x] Final exam ([answers](exams/final))
